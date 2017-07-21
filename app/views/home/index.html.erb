@@ -1,0 +1,10 @@
+Bem vindo ao melhor de compartilhamento de conhecimento.
+<% @ads.each do |ad|%>
+<h3><%= ad.requested_knowledge%><h3>
+  Conhecimento: <%= ad.offered_knowledge%>
+  <%=ad.meeting_type%>
+  <%=ad.day_period%>
+  <%=ad.location%>
+  <%=ad.avaliability%>
+
+<% end %>
