@@ -1,4 +1,12 @@
 Bem vindo ao melhor de compartilhamento de conhecimento.
+<% if current_user and !current_user.profile %>
+    <h2>Você ainda nao completou o seu perfil, <%= link_to 'Clique aqui' %> para continuar</h2>
+<% end %>
+<%= link_to 'Cadastrar', new_user_registration_path %>
+
+<% if @ads.empty? %>
+  <h3>'Não temos anúncios por agora em breve novos anúncios para você. Volte logo!</h3>
+<% end %>
 <% @ads.each do |ad|%>
 <h3><%= ad.requested_knowledge%><h3>
   Conhecimento: <%= ad.offered_knowledge%>
@@ -6,5 +14,4 @@ Bem vindo ao melhor de compartilhamento de conhecimento.
   <%=ad.day_period%>
   <%=ad.location%>
   <%=ad.avaliability%>
-
 <% end %>
