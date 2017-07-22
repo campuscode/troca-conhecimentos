@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TrocaConhecimento</title>
+    <title>Troca Conhecimento</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Troca Conhecimento</a>
+            <%unless user_signed_in? %>
+              <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success navbar-btn' %>
+              <%= link_to "Log in", new_user_session_path, class: 'btn btn-success navbar-btn'%>
+            <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class='container'>
+        <%= yield %>
+      </div>
+    </main>
   </body>
 </html>
