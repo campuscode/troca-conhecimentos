@@ -1,11 +1,25 @@
-<div>
-  <% if flash[:success]%>
-    <%= flash[:success]%>
+<div class='row'>
+  <h1>Bem vindo ao melhor de compartilhamento de conhecimento.</h1>
+</div>
+
+<div class='row'>
+  <% if current_user and !current_user.profile %>
+    <h2>Você ainda nao completou o seu perfil, <%= link_to 'Clique aqui', new_profile_path %> para continuar</h2>
   <% end %>
 </div>
-<% if current_user and !current_user.profile %>
-    <h2>Você ainda nao completou o seu perfil, <%= link_to 'Clique aqui', new_profile_path %> para continuar</h2>
-<% end %>
 
-<%= link_to 'Cadastrar', new_user_registration_path %>
-<%= link_to 'Log in', user_session_path %>
+<div class='row'>
+<% if @ads.empty? %>
+  <div class="alert alert-info">
+    <h3>Não temos anúncios por agora em breve novos anúncios para você. Volte logo!</h3>
+  </div>
+<% end %>
+</div>
+
+<div class='row'>
+  <% @ads.each do |ad|%>
+  <div class='col-xs-12 col-sm-4 col-md-4 .col-lg-3'>
+    <%= render ad %>
+  </div>
+  <% end %>
+</div>
