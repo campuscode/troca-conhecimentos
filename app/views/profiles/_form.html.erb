@@ -1,0 +1,22 @@
+<%= form_for @profile do |f| %>
+
+  <%= f.label :name%>
+  <%= f.text_field :name %>
+
+  <%= f.label :birth_date %>
+  <%= f.date_field :birth_date %>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+
+  <%= f.label :state %>
+  <%= f.text_field :state %>
+
+  <%= f.label :skills %>
+  <%= f.text_area :skills %>
+
+  <%= f.label :photo %>
+  <%= f.text_field :photo %>
+
+  <%= f.submit 'Enviar' %>
+<% end %>

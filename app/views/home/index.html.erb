@@ -4,7 +4,7 @@
 
 <div class='row'>
   <% if current_user and !current_user.profile %>
-    <h2>Você ainda nao completou o seu perfil, <%= link_to 'Clique aqui' %> para continuar</h2>
+    <h2>Você ainda nao completou o seu perfil, <%= link_to 'Clique aqui', new_profile_path %> para continuar</h2>
   <% end %>
 </div>
 

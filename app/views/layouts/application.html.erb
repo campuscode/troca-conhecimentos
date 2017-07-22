@@ -25,6 +25,11 @@
 
     <main>
       <div class='container'>
+        <div>
+          <% if flash[:success]%>
+            <%= flash[:success]%>
+          <% end %>
+        </div>
         <%= yield %>
       </div>
     </main>
