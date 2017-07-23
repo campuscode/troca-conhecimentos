@@ -15,9 +15,13 @@
       <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Troca Conhecimento</a>
+            <ul class="navbar-right" >
             <%unless user_signed_in? %>
               <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success navbar-btn' %>
               <%= link_to "Log in", new_user_session_path, class: 'btn btn-success navbar-btn'%>
+            <% else %>
+              <%= link_to 'Enviar proposta', new_proposal_path, class: 'btn btn-success navbar-btn'  %>
+              <%= link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-success navbar-btn' %>
             <% end %>
         </div>
       </div>

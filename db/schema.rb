@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721232739) do
-
-  create_table "ads", force: :cascade do |t|
-    t.string "requested_knowledge"
-    t.string "offered_knowledge"
-    t.string "meeting_type"
-    t.string "day_period"
-    t.string "location"
-    t.string "avaliability"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20170723153134) do
 
   create_table "ads", force: :cascade do |t|
     t.string "requested_knowledge"
@@ -45,6 +34,18 @@ ActiveRecord::Schema.define(version: 20170721232739) do
     t.text "skills"
     t.string "photo"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "proposals", force: :cascade do |t|
+    t.text "description"
+    t.text "requested_knowledge"
+    t.string "email"
+    t.string "day_period"
+    t.string "meeting_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
