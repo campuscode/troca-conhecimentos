@@ -1,3 +1,11 @@
+<% if @proposal.errors.full_messages.any? %>
+    <div class="alert alert-danger">
+        <% @proposal.errors.full_messages.each do |message| %>
+            <label><%= message %></label>
+        <% end %>
+    </div>                
+<% end %>
+
 <div class='row'>
   <h1>Enviar Proposta</h1>
   <div class='col-md-6'>

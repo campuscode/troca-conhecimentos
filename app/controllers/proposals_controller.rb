@@ -12,6 +12,9 @@ class ProposalsController < ApplicationController
         @proposal.user = current_user
         if @proposal.save
             redirect_to @proposal
+        else
+            flash[:error] = 'Houve um erro'
+            render :new    
         end    
     end 
 
