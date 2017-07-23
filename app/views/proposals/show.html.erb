@@ -1,3 +1,16 @@
+<h1> sua proposta foi enviada com sucesso! </h1>
+
+<h2> Dados da proposta: </h2>
+
+  <ul>
+     <li>Minhas qualificaçoes sobre o tema: <%= @proposal.description %></li>
+     <li>Conhecimento que desejo aprender: <%= @proposal.requested_knowledge %></li>
+     <li>Email: <%= @proposal.email %></li>
+     <li>Periodo do dia: <%= @proposal.day_period %></li>
+     <li>Formato: <%= @proposal.meeting_type %></li>
+  </ul>   
+  
+  <%= link_to 'Voltar', root_path %>
 
 
-<h1> sua proposta foi enviada com sucesso </h1>
+

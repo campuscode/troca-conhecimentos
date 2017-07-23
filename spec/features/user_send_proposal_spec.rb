@@ -19,8 +19,13 @@ feature 'user send proposal' do
     
     click_on 'Enviar'
     
-    #expectativa do usuario apos a acao
-    expect(page).to have_css('h1', text: 'sua proposta foi enviada com sucesso')
+    #expectativa do usuario apos a acao  
+    expect(page).to have_css('h1', text: 'sua proposta foi enviada com sucesso!')
+    expect(page).to have_css('li', text: 'Minhas qualificaçoes sobre o tema')
+    expect(page).to have_css('li', text: 'Conhecimento que desejo aprender')
+    expect(page).to have_css('li', text: 'Email')
+    expect(page).to have_css('li', text: 'Periodo do dia')
+    expect(page).to have_css('li', text: 'Formato')
     
     end     
 
@@ -28,7 +33,6 @@ feature 'user send proposal' do
     #cria os dados necessarios
     user = create(:user)
     login_as(user)
-    
     #simula a acao
     visit root_path
 
