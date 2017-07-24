@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :profiles, only:[:new, :create, :show]
+
   resources :ads, only: [:new, :create, :show]
+  get 'filter/ads', to: 'ads#filter'
+
 end
