@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   resources :profiles, only:[:new, :create, :show]
 
-  resources :ads, only:[] do
-    get 'filter', on: :collection
-  end
+
+    get 'filter/ads', to: 'ads#filter'
+
+
 
 end
