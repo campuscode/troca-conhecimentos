@@ -30,6 +30,17 @@
             <%= flash[:success]%>
           <% end %>
         </div>
+        <div>
+          <% if flash[:notice]%>
+            <%= flash[:notice]%>
+          <% end %>
+        </div>
+        <div>
+          <% if flash[:alert]%>
+            <%= flash[:alert]%>
+          <% end %>
+        </div>
+
         <%= yield %>
       </div>
     </main>

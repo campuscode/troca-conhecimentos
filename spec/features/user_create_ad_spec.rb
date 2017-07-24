@@ -6,7 +6,7 @@ feature 'User create Ad' do
     user = create(:user)
     login_as(user, scope: :user)
 
-    ad = build(:ad)
+    ad = build(:ad, user: user)
 
     visit root_path
     click_on 'Criar Anuncio'
@@ -28,5 +28,41 @@ feature 'User create Ad' do
     expect(page).to have_css('li', text: ad.location)
     expect(page).to have_css('li', text: ad.avaliability)
   end
+
+  scenario 'and needs to be loged in' do
+
+    ad = build(:ad)
+
+    visit new_ad_path
+    expect(page).to have_content(I18n.t('devise.failure.unauthenticated'))
+
+
+  end
+
+  scenario 'and can only have one ad' do
+
+    user = create(:user)
+    login_as(user, scope: :user)
+    ad = create(:ad, user: user, active: true)
+
+
+    visit new_ad_path
+
+    expect(page).to have_content('Voce ja tem um anuncio ativo')
+  end
+
+  scenario 'and trie to create a second ad' do
+
+    user = create(:user)
+    login_as(user, scope: :user)
+    ad = create(:ad, user: user, active: true)
+
+    visit root_path
+
+
+    expect(page).not_to have_content('Criar Anuncio')
+
+  end
+
 
 end
