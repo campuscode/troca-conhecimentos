@@ -4,7 +4,8 @@ feature 'visitant filter ads' do
   scenario 'sucessfully' do
     #dados
     ad = create(:ad, requested_knowledge: 'Quero aprender Culinária!')
-    another_ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    another_ad1 = create(:ad, requested_knowledge: 'Aprender violão', offered_knowledge: 'Ensinar Culinária')
+    another_ad2 = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
 
     #navegaçao
     visit root_path
@@ -15,6 +16,7 @@ feature 'visitant filter ads' do
     #expectations
     expect(page).not_to have_content('Quero aprender Ruby on Rails!')
     expect(page).to have_content('Quero aprender Culinária!')
+    expect(page).to have_content('Aprender violão')
     expect(page).to have_content('Resultado da busca: "Culinária"')
   end
 
