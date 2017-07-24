@@ -3,13 +3,13 @@
         <% @proposal.errors.full_messages.each do |message| %>
             <label><%= message %></label>
         <% end %>
-    </div>                
+    </div>
 <% end %>
 
 <div class='row'>
   <h1>Enviar Proposta</h1>
   <div class='col-md-6'>
-  <%= form_for @proposal do |f| %>
+  <%= form_for [@ad, @proposal] do |f| %>
 
     <div class="form-group">
             <%= f.label :description, 'Minhas qualificaçoes sobre o tema' %>
@@ -36,6 +36,6 @@
             <%= f.text_field :meeting_type, class: 'form-control' %>
         </div>
         <%= f.submit 'Enviar', class: "btn btn-default" %>
-    <% end %> 
-   </div>      
+    <% end %>
+   </div>
 </div>

@@ -1,0 +1,11 @@
+<div class='row'>
+  <h3><%= @ad.requested_knowledge %></h3>
+
+  <li>Conhecimento: <%= @ad.offered_knowledge%></li>
+  <li><%= @ad.meeting_type%><br></li>
+  <li><%= @ad.day_period%><br></li>
+  <li><%= @ad.location%><br></li>
+  <li><%= @ad.avaliability%><br></li>
+</div>
+
+<%= link_to 'Enviar proposta', new_ad_proposal_path(@ad, @proposal), class: 'btn btn-success navbar-btn'%>

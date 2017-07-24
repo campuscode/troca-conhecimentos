@@ -1,11 +1,16 @@
 <div class='row'>
   <h1>Bem vindo ao melhor de compartilhamento de conhecimento.</h1>
-  
 </div>
 
 <div class='row'>
   <% if current_user and !current_user.profile %>
     <h2>Você ainda nao completou o seu perfil, <%= link_to 'Clique aqui', new_profile_path %> para continuar</h2>
+  <% end %>
+</div>
+
+<div class='row'>
+  <% if user_signed_in? %>
+    <h2><%= link_to 'Criar Anuncio', new_ad_path %>
   <% end %>
 </div>
 
@@ -20,9 +25,7 @@
 <div class='row'>
   <% @ads.each do |ad|%>
   <div class='col-xs-12 col-sm-4 col-md-4 .col-lg-3'>
-    <%= render ad %>
+    <h3><%= link_to ad.requested_knowledge, ad_path(ad) %></h3>
   </div>
   <% end %>
 </div>
- 
-

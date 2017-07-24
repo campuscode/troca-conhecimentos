@@ -1,28 +1,31 @@
 class ProposalsController < ApplicationController
+    before_action :find_ad, only: [:create, :new, :show]
 
     def show
-        @proposal = Proposal.find(params[:id])
-    end 
+        @proposal = @ad.proposals.find(params[:id])
+    end
 
     def new
-        @proposal = Proposal.new
-    end 
+        @proposal = @ad.proposals.new
+    end
 
     def create
-        @proposal = Proposal.create(proposals_params)
+        @proposal = @ad.proposals.new(proposal_params)
         @proposal.user = current_user
         if @proposal.save
-            redirect_to @proposal
+            redirect_to [@ad, @proposal]
         else
             flash[:error] = 'Houve um erro'
-            render :new    
-        end    
-    end 
+            render :new
+        end
+    end
 
+private
+    def find_ad
+      @ad = Ad.find(params[:ad_id])
+    end
 
-private 
-
-    def proposals_params
+    def proposal_params
         params.require(:proposal).permit(:description, :requested_knowledge, :email, :day_period, :meeting_type)
-    end 
-end    
+    end
+end
