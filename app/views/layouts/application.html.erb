@@ -15,7 +15,9 @@
       <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">Troca Conhecimento</a>
-            <%unless user_signed_in? %>
+            <% if current_user and current_user.profile and !current_user.profile.id.nil? %>
+              <%= link_to current_user.profile.name, profile_path(current_user.profile) %>
+            <% else %>
               <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success navbar-btn' %>
               <%= link_to "Log in", new_user_session_path, class: 'btn btn-success navbar-btn'%>
             <% end %>
@@ -33,6 +35,9 @@
         <div>
           <% if flash[:success]%>
             <%= flash[:success]%>
+          <% end %>
+          <% if flash[:error]%>
+            <%= flash[:error] %>
           <% end %>
         </div>
         <%= yield %>

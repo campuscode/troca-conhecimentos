@@ -28,7 +28,6 @@ feature 'Visitor create account' do
       click_on 'Log in'
     end
 
-
     expect(current_path).to eq root_path
     expect(page).to have_content('Você ainda nao completou o seu perfil, Clique aqui para continuar')
 
@@ -46,7 +45,6 @@ feature 'Visitor create account' do
     fill_in 'Cidade', with:'São Paulo'
     fill_in 'Estado', with:'SP'
     fill_in 'Habilidades', with: 'Sei tocar guitarra, fazer 1000 embaixadinhas!'
-    fill_in 'Minha Foto', with: ''
 
     click_on 'Enviar'
 
@@ -66,7 +64,6 @@ feature 'Visitor create account' do
     fill_in 'Cidade', with:''
     fill_in 'Estado', with:''
     fill_in 'Habilidades', with: ''
-    fill_in 'Minha Foto', with: ''
 
     click_on 'Enviar'
 

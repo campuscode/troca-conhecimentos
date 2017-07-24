@@ -17,6 +17,20 @@ class ProfilesController < ApplicationController
    end
  end
 
+ def show
+   @profile = Profile.find(params[:id])
+ end
+
+ def edit
+   @profile = Profile.find(params[:id])
+ end
+
+ def update
+   @profile = Profile.find(params[:id])
+   @profile.update(params_profile)
+   redirect_to @profile
+ end
+
 
  private
 

@@ -1,0 +1,12 @@
+<div class='row'>
+  <%= image_tag @profile.photo.url(:medium) %>
+  <h3><%= @profile.name %></h3>
+  <ul>
+    <li>Data de Nascimento: <%= I18n.l(@profile.birth_date) %></li>
+    <li>Cidade: <%= @profile.city %></li>
+    <li>Estado: <%= @profile.state %></li>
+  </ul>
+  <label>Conhecimentos:</label>
+  <p><%= @profile.skills %></p>
+  <%= link_to 'Editar meu perfil', edit_profile_path %>
+</div>
