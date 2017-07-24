@@ -1,0 +1,19 @@
+<div class='row'>
+  <h1>Resultado da busca: "<%=@busca%>"</h1>
+</div>
+
+<div class='row'>
+<% if @ads.empty? %>
+  <div class="alert alert-warning">
+    <h3>Não encontramos resultados para a busca!</h3>
+  </div>
+<% end %>
+</div>
+
+<div class='row'>
+  <% @ads.each do |ad|%>
+  <div class='col-xs-12 col-sm-4 col-md-4 .col-lg-3'>
+    <%= render ad %>
+  </div>
+  <% end %>
+</div>

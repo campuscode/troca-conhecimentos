@@ -14,10 +14,15 @@
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Troca Conhecimento</a>
+            <a class="navbar-brand" href="/">Troca Conhecimento</a>
             <%unless user_signed_in? %>
               <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success navbar-btn' %>
               <%= link_to "Log in", new_user_session_path, class: 'btn btn-success navbar-btn'%>
+            <% end %>
+            <%= form_tag(filter_ads_path, {method: "get", class: "navbar-form navbar-right" }) do %>
+              <%= label_tag(:filter, "Busca") %>
+              <%= text_field_tag(:filter) %>
+              <%= submit_tag("Buscar" ,{class: "btn btn-success"}) %>
             <% end %>
         </div>
       </div>
