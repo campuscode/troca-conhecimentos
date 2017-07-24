@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: 'home#index'
+  get 'filter/ads', to: 'ads#filter'
 
   resources :profiles, only:[:new, :create, :show]
   resources :ads, only: [:new, :create, :show] do

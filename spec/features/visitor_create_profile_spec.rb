@@ -5,7 +5,7 @@ feature 'Visitor create account' do
     visit root_path
     click_on 'Cadastrar'
 
-    within('form') do
+    within('form.new_user') do
       fill_in 'Email', with: 'teste@teste.com'
       fill_in 'Senha', with: '123456'
       fill_in 'Confirme sua senha', with: '123456'

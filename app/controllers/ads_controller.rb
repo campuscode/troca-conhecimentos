@@ -16,6 +16,11 @@ class AdsController < ApplicationController
      @current_user_proposal = @ad.proposals.find_by(user: current_user)
     end
 
+    def filter
+      @busca=params[:filter]
+      @ads = Ad.where("requested_knowledge like  ? or offered_knowledge like  ? ", "%#{@busca}%", "%#{@busca}%")
+    end
+
 private
 
      def ad_params
