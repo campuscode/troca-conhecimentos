@@ -1,4 +1,5 @@
 class ProposalsController < ApplicationController
+    before_action :authenticate_user!, only: [:new]
     before_action :find_ad, only: [:create, :new, :show]
 
     def show

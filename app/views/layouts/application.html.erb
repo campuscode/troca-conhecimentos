@@ -28,18 +28,21 @@
 
     <main>
       <div class='container'>
-        <div>
           <% if flash[:success]%>
-            <%= flash[:success]%>
+          <div class="row">
+            <div class='alert alert-success'>
+              <%= flash[:success]%>
+            </div>
+          </div>
           <% end %>
-      <div class='container'>
-        <div>
           <% if flash[:error]%>
-            <%= flash[:error]%>
-            <% end %> 
-        </div>
-      </div>
-    </div>      
+            <div class="row">
+              <div class='alert alert-danger'>
+                <%= flash[:error]%>
+              </div>
+            </div>
+          <% end %>
+
         <%= yield %>
       </div>
     </main>
