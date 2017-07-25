@@ -10,6 +10,7 @@
 
 <div class='row'>
     <%if user_signed_in? %>
+      <h2><%= link_to 'Propostas recebidas', my_proposals_path %></h2>
       <% if current_user.ad.where(active: true).empty? %>
         <h2><%= link_to 'Criar Anuncio', new_ad_path %></h2>
       <% end %>

@@ -5,5 +5,7 @@ FactoryGirl.define do
     email "MyString"
     day_period "MyString"
     meeting_type "MyString"
+    user
+    ad
   end
 end
