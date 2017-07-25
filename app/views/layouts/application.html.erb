@@ -17,7 +17,7 @@
             <a class="navbar-brand" href="/">Troca Conhecimento</a>
         </div>
         <% if current_profile %>
-          <div class="navbar-text navbar-right">
+          <div class="navbar-right">
             <% if current_profile.photo.file? %>
               <%= image_tag current_profile.photo.url(:thumb), class:'img-circle', size:'25x25' %>
             <%else%>
