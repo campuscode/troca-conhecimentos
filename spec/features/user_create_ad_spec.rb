@@ -6,7 +6,7 @@ feature 'User create Ad' do
     user = create(:user)
     login_as(user, scope: :user)
 
-    ad = build(:ad, user: user)
+    ad = build(:ad, user: user, requested_knowledge: 'Quero aprender Rails!' )
 
     visit root_path
     click_on 'Criar Anuncio'
@@ -22,11 +22,11 @@ feature 'User create Ad' do
 
     #expect strang things
     expect(page).to have_css('h1', text: ad.requested_knowledge)
-    expect(page).to have_css('li', text: ad.offered_knowledge)
-    expect(page).to have_css('li', text: ad.meeting_type)
-    expect(page).to have_css('li', text: ad.day_period)
-    expect(page).to have_css('li', text: ad.location)
-    expect(page).to have_css('li', text: ad.avaliability)
+    expect(page).to have_css('dd', text: ad.offered_knowledge)
+    expect(page).to have_css('dd', text: ad.meeting_type)
+    expect(page).to have_css('dd', text: ad.day_period)
+    expect(page).to have_css('dd', text: ad.location)
+    expect(page).to have_css('dd', text: ad.avaliability)
   end
 
   scenario 'and needs to be loged in' do

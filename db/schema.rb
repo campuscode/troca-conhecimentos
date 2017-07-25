@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(version: 20170724225435) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "proposals", force: :cascade do |t|
+    t.text "description"
+    t.text "requested_knowledge"
+    t.string "email"
+    t.string "day_period"
+    t.string "meeting_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "ad_id"
+    t.index ["ad_id"], name: "index_proposals_on_ad_id"
+    t.index ["user_id"], name: "index_proposals_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

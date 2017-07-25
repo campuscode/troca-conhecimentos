@@ -14,10 +14,12 @@
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Troca Conhecimento</a>
+            <a class="navbar-brand" href="#">Troca Conhecimento</a>
             <%unless user_signed_in? %>
               <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success navbar-btn' %>
               <%= link_to "Log in", new_user_session_path, class: 'btn btn-success navbar-btn'%>
+            <% else %>
+              <%= link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-success navbar-btn' %>
             <% end %>
             <%= form_tag(filter_ads_path, {method: "get", class: "navbar-form navbar-right" }) do %>
               <%= label_tag(:filter, "Busca") %>
@@ -30,22 +32,40 @@
 
     <main>
       <div class='container'>
-        <div>
           <% if flash[:success]%>
-            <%= flash[:success]%>
+          <div class="row">
+            <div class='alert alert-success'>
+              <%= flash[:success]%>
+            </div>
+          </div>
           <% end %>
-        </div>
+
+          <% if flash[:error]%>
+            <div class="row">
+              <div class='alert alert-danger'>
+                <%= flash[:error]%>
+              </div>
+            <% end %>
+          </div>
+
+
         <div>
           <% if flash[:notice]%>
-            <%= flash[:notice]%>
-          <% end %>
-        </div>
+            <div class="row">
+              <div class='alert alert-info'>
+                <%= flash[:notice]%>
+              </div>
+           <% end %>
+          </div>
+          
         <div>
           <% if flash[:alert]%>
+          <div class="row">
+            <div class='alert alert-alert'>
             <%= flash[:alert]%>
+            </div>
           <% end %>
-        </div>
-
+         </div>
         <%= yield %>
       </div>
     </main>

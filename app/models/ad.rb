@@ -1,4 +1,4 @@
 class Ad < ApplicationRecord
-
-  belongs_to :user
+    has_many :proposals
+    belongs_to :user
 end

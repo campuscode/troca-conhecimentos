@@ -1,0 +1,41 @@
+<% if @proposal.errors.full_messages.any? %>
+    <div class="alert alert-danger">
+        <% @proposal.errors.full_messages.each do |message| %>
+            <label><%= message %></label>
+        <% end %>
+    </div>
+<% end %>
+
+<div class='row'>
+  <h1>Enviar Proposta</h1>
+  <div class='col-md-6'>
+  <%= form_for [@ad, @proposal] do |f| %>
+
+    <div class="form-group">
+            <%= f.label :description, 'Minhas qualificaçoes sobre o tema' %>
+            <%= f.text_field :description, class: 'form-control'%>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :requested_knowledge, 'Conhecimento que desejo aprender' %>
+            <%= f.text_field :requested_knowledge, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :email, 'Email' %>
+            <%= f.email_field :email, class: 'form-control'%>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :day_period, 'Periodo do dia' %>
+            <%= f.text_field :day_period, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :meeting_type, 'Formato' %>
+            <%= f.text_field :meeting_type, class: 'form-control' %>
+        </div>
+        <%= f.submit 'Enviar', class: "btn btn-default" %>
+    <% end %>
+   </div>
+</div>

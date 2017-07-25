@@ -5,6 +5,7 @@ before_action :authenticate_user!, only: [:create, :new]
 
   def show
     @ad = Ad.find(params[:id])
+    @current_user_proposal = @ad.proposals.find_by(user: current_user)
   end
 
   def new
