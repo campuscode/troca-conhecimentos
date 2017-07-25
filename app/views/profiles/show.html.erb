@@ -1,0 +1,16 @@
+<div class='row'>
+  <% if @profile.photo.file? %>
+    <%= image_tag @profile.photo.url(:medium) %>
+  <% else %>
+    <%= image_tag 'blank_profile_photo.jpg' %>
+  <% end %>
+  <h3><%= @profile.name %></h3>
+  <dl>
+    <dd>Data de Nascimento: <%= I18n.l(@profile.birth_date) %></dd>
+    <dd>Cidade: <%= @profile.city %></dd>
+    <dd>Estado: <%= @profile.state %></dd>
+  </dl>
+  <label>Conhecimentos:</label>
+  <p><%= @profile.skills %></p>
+  <%= link_to 'Editar meu perfil', edit_profile_path, class: 'btn btn-default' %>
+</div>

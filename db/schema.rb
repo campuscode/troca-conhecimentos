@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20170725223459) do
     t.string "city"
     t.string "state"
     t.text "skills"
-    t.string "photo"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
