@@ -6,8 +6,14 @@ Rails.application.routes.draw do
   resources :profiles, only:[:new, :create, :show, :edit, :update]
 
   get 'filter/ads', to: 'ads#filter'
+  get 'my_proposals', to: 'proposals#my_proposals'
 
   resources :ads, only: [:new, :create, :show] do
-    resources :proposals, only:[:new, :create, :show]
+    resources :proposals, only:[:new, :create]
   end
+
+  resources :proposals, only:[:show] do
+    post 'approve', on: :member
+  end
+
 end

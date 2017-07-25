@@ -21,9 +21,17 @@ class ProposalsController < ApplicationController
         end
     end
 
+    def my_proposals
+      @proposals = current_user.my_proposals
+    end
+
+    def approve
+      
+    end
+
 private
     def find_ad
-      @ad = Ad.find(params[:ad_id])
+      @ad = Ad.find(params[:id])
     end
 
     def proposal_params
