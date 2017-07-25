@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'visitant filter ads' do
   scenario 'sucessfully' do
     #dados
+    user = create(:user, email: 'user@email.com')
+    anoter_user = create(:user, email: 'meuusuario@email.com')
     ad = create(:ad, requested_knowledge: 'Quero aprender Culinária!')
     another_ad1 = create(:ad, requested_knowledge: 'Aprender violão', offered_knowledge: 'Ensinar Culinária')
     another_ad2 = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')

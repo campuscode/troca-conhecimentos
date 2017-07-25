@@ -19,7 +19,7 @@ require 'rails_helper'
      click_on 'Enviar'
 
      #expect strang things
-     expect(page).to have_css('h3', text: 'Quero aprender Ruby on Rails!')
+     expect(page).to have_css('h1', text: 'Quero aprender Ruby on Rails!')
      expect(page).to have_css('dl', text: 'sei python')
      expect(page).to have_css('dl', text: 'presencial')
      expect(page).to have_css('dl', text: 'Manha')

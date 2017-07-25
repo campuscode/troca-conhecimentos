@@ -9,9 +9,11 @@
 </div>
 
 <div class='row'>
-  <% if user_signed_in? %>
-    <h2><%= link_to 'Criar Anuncio', new_ad_path %>
-  <% end %>
+    <%if user_signed_in? %>
+      <% if current_user.ad.where(active: true).empty? %>
+        <h2><%= link_to 'Criar Anuncio', new_ad_path %></h2>
+      <% end %>
+    <% end %>
 </div>
 
 <div class='row'>

@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724192329) do
+ActiveRecord::Schema.define(version: 20170724225435) do
+
+  create_table "ads", force: :cascade do |t|
+    t.string "requested_knowledge"
+    t.string "offered_knowledge"
+    t.string "meeting_type"
+    t.string "day_period"
+    t.string "location"
+    t.string "avaliability"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.boolean "active"
+    t.index ["user_id"], name: "index_ads_on_user_id"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string "name"
