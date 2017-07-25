@@ -3,6 +3,7 @@ feature 'user list his proposals' do
   scenario 'successfully' do
     #dados
     user = create(:user)
+    profile = create(:profile, user: user)
     login_as(user)
     ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
     proposal = create(:proposal, user: user, ad: ad, description: 'Sei tocar violao',
@@ -22,7 +23,6 @@ feature 'user list his proposals' do
 
     expect(page).to have_css('h1', text: 'Suas propostas:')
     expect(page).to have_css('dl', text: proposal.requested_knowledge)
-    expect(page).to have_css('dl', text: proposal.offered_knowledge)
     expect(page).to have_css('dl', text: 'Email')
     expect(page).to have_css('dl', text: proposal.day_period)
     expect(page).to have_css('dl', text: proposal.meeting_type)
@@ -30,7 +30,6 @@ feature 'user list his proposals' do
 
     expect(page).to have_css('h1', text: 'Suas propostas:')
     expect(page).to have_css('dl', text: other_proposal.requested_knowledge)
-    expect(page).to have_css('dl', text: other_proposal.offered_knowledge)
     expect(page).to have_css('dl', text: 'Email')
     expect(page).to have_css('dl', text: other_proposal.day_period)
     expect(page).to have_css('dl', text: other_proposal.meeting_type)
