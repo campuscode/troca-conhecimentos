@@ -15,18 +15,25 @@
       <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">Troca Conhecimento</a>
-            <% if current_profile %>
-              <%= link_to current_profile.name, profile_path(current_profile) %>
-            <% else %>
-              <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success navbar-btn' %>
-              <%= link_to "Log in", new_user_session_path, class: 'btn btn-success navbar-btn'%>
-            <% end %>
-            <%= form_tag(filter_ads_path, {method: "get", class: "navbar-form navbar-right" }) do %>
-              <%= label_tag(:filter, "Busca") %>
-              <%= text_field_tag(:filter) %>
-              <%= submit_tag("Buscar" ,{class: "btn btn-success"}) %>
-            <% end %>
         </div>
+        <% if current_profile %>
+          <div class="navbar-text navbar-right">
+            <% if current_profile.photo.file? %>
+              <%= image_tag current_profile.photo.url(:thumb), class:'img-circle', size:'25x25' %>
+            <%else%>
+              <%= image_tag 'blank_profile_photo.jpg', class:'img-circle', size:'25x25' %>
+            <%end%>
+            <%= link_to current_profile.name, profile_path(current_profile), class: 'navbar-link' %>
+          </div>
+        <% else %>
+          <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success navbar-btn' %>
+          <%= link_to "Log in", new_user_session_path, class: 'btn btn-success navbar-btn'%>
+        <% end %>
+        <%= form_tag(filter_ads_path, {method: "get", class: "navbar-form navbar-right" }) do %>
+          <%= label_tag(:filter, "Busca") %>
+          <%= text_field_tag(:filter, nil,class: 'form-control') %>
+          <%= submit_tag("Buscar" ,{class: "btn btn-success"}) %>
+        <% end %>
       </div>
     </nav>
 

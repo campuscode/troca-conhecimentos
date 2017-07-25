@@ -49,7 +49,6 @@ feature 'Visitor create account' do
     click_on 'Enviar'
 
     expect(page).to have_content('Seu perfil está concluido, aproveite.')
-
   end
 
   scenario 'user complete profile missing some attributes' do
@@ -70,6 +69,22 @@ feature 'Visitor create account' do
     expect(page).to have_content('É necessario preencher todos os campos.')
   end
 
+  scenario 'user complete profile and miss photo' do
+    user = create(:user, password: '123456')
+    login_as(user, scope: :user)
 
+    visit root_path
+    click_on 'Clique aqui'
+
+    fill_in 'Nome', with:'Joao'
+    fill_in 'Data de Nascimento', with:'14/04/1992'
+    fill_in 'Cidade', with:'São Paulo'
+    fill_in 'Estado', with:'SP'
+    fill_in 'Habilidades', with: 'Sei tocar guitarra, fazer 1000 embaixadinhas!'
+
+    click_on 'Enviar'
+    click_on 'Joao'
+    expect(page).to have_xpath("//img[contains(@src,'blank_profile_photo')]")
+  end
 
 end
