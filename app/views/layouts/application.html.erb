@@ -15,8 +15,8 @@
       <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">Troca Conhecimento</a>
-            <% if current_user and current_user.profile and !current_user.profile.id.nil? %>
-              <%= link_to current_user.profile.name, profile_path(current_user.profile) %>
+            <% if current_profile %>
+              <%= link_to current_profile.name, profile_path(current_profile) %>
             <% else %>
               <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success navbar-btn' %>
               <%= link_to "Log in", new_user_session_path, class: 'btn btn-success navbar-btn'%>
