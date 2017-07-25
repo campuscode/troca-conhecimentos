@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20170724232927) do
     t.string "avaliability"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.boolean "active"
+    t.index ["user_id"], name: "index_ads_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -37,6 +40,20 @@ ActiveRecord::Schema.define(version: 20170724232927) do
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "proposals", force: :cascade do |t|
+    t.text "description"
+    t.text "requested_knowledge"
+    t.string "email"
+    t.string "day_period"
+    t.string "meeting_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "ad_id"
+    t.index ["ad_id"], name: "index_proposals_on_ad_id"
+    t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

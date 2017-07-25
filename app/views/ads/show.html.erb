@@ -1,0 +1,22 @@
+<div class='row'>
+  <h1><%= @ad.requested_knowledge %></h1>
+  <dl class="dl-horizontal">
+    <dt>Conhecimento:</dt><dd> <%= @ad.offered_knowledge%></dd>
+    <dt>Formato:</dt><dd><%= @ad.meeting_type%><br></dd>
+    <dt>Periodo:</dt><dd><%= @ad.day_period%><br></dd>
+    <dt>Localizacao:</dt><dd><%= @ad.location%><br></dd>
+    <dt>Quando:</dt><dd><%= @ad.avaliability%><br></dd>
+  </dl>
+</div>
+
+<% if @current_user_proposal.nil? %>
+  <%= link_to 'Enviar proposta', new_ad_proposal_path(@ad, @proposal), class: 'btn btn-success navbar-btn'%>
+<% else %>
+  <h1>Dados da sua proposta:</h1>
+  <dl class="dl-horizontal">
+     <dt>Conhecimento: </dt><dd> <%= @current_user_proposal.requested_knowledge %></dd>
+     <dt>Email:</dt><dd> <%= @current_user_proposal.email %></dd>
+     <dt>Periodo do dia:</dt><dd> <%= @current_user_proposal.day_period %></dd>
+     <dt>Formato:</dt><dd> <%= @current_user_proposal.meeting_type %></dd>
+  </dt>
+<% end %>

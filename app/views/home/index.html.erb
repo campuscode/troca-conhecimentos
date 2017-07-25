@@ -9,6 +9,14 @@
 </div>
 
 <div class='row'>
+    <%if user_signed_in? %>
+      <% if current_user.ad.where(active: true).empty? %>
+        <h2><%= link_to 'Criar Anuncio', new_ad_path %></h2>
+      <% end %>
+    <% end %>
+</div>
+
+<div class='row'>
 <% if @ads.empty? %>
   <div class="alert alert-info">
     <h3>Não temos anúncios por agora em breve novos anúncios para você. Volte logo!</h3>
@@ -19,7 +27,7 @@
 <div class='row'>
   <% @ads.each do |ad|%>
   <div class='col-xs-12 col-sm-4 col-md-4 .col-lg-3'>
-    <%= render ad %>
+    <h3><%= link_to ad.requested_knowledge, ad_path(ad) %></h3>
   </div>
   <% end %>
 </div>

@@ -24,9 +24,11 @@ feature 'Visitor See Ads' do
 
   scenario 'and see more then one ad' do
     #dados
+    another_user = create(:user, email: 'novo@usuario.com')
+    user = create(:user, email: 'aham@usuario.com')
     ad_ruby = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
-    ad_java = create(:ad, requested_knowledge: 'Gostaria de aprender Java for Web')
-    ad_marcenaria = create(:ad, requested_knowledge: 'Gostaria de aprender a fazer móveis bacanas!')
+    ad_java = create(:ad, requested_knowledge: 'Gostaria de aprender Java for Web', user: another_user)
+    ad_marcenaria = create(:ad, requested_knowledge: 'Gostaria de aprender a fazer móveis bacanas!', user: user)
 
     #navegaçao
     visit root_path
