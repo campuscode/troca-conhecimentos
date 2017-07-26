@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_one :profile
   has_many :proposals
   has_many :ad
+
+  delegate :name, to: :profile
 end
