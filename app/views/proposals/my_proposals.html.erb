@@ -2,7 +2,7 @@
 
 
 <% @proposals.each do |proposal| %>
-
+<div id="proposal-<%= proposal.id %>" >
 <h2> Dados da proposta: </h2>
 
   <dt>
@@ -13,7 +13,7 @@
      <dl>Formato: <%= proposal.meeting_type %></dl>
   </dt>
   <%= link_to 'Aceitar', approve_proposal_path(proposal), method: :post %>
-
+</div>
 <%end%>
 
 

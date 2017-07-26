@@ -10,7 +10,8 @@ class User < ApplicationRecord
   #has_many :received_proposals, through: :ad
 
   def my_proposals
-    ads.find_by(active: true).proposals
+    active_ads = ads.where(active: true)
+    Proposal.where(ad: active_ads)
   end
 
 end
