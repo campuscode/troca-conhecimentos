@@ -31,6 +31,9 @@ class ProfilesController < ApplicationController
    redirect_to @profile
  end
 
+ def my_send_proposals
+   @profile_proposals = current_user.proposals
+ end
 
  private
 

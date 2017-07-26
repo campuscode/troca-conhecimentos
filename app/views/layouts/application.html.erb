@@ -23,6 +23,7 @@
             <%else%>
               <%= image_tag 'blank_profile_photo.jpg', class:'img-circle', size:'25x25' %>
             <%end%>
+            <%= link_to 'Minhas propostas', my_send_proposals_path, class: 'btn btn-success navbar-btn' %>
             <%= link_to current_profile.name, profile_path(current_profile), class: 'navbar-link' %>
             <%= link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-success navbar-btn' %>
           </div>
