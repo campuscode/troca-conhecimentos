@@ -1,11 +1,10 @@
 FactoryGirl.define do
   factory :proposal do
-    description "MyText"
-    requested_knowledge "MyText"
-    email "MyString"
-    day_period "MyString"
-    meeting_type "MyString"
+    description "Minha proposta"
+    requested_knowledge "O que quero aprender..."
+    email "email@email.com"
+    day_period "Qualquer periodo"
+    meeting_type "Qualquer formato"
     user
-    ad
   end
 end

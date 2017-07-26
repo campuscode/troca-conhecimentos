@@ -14,9 +14,10 @@
 <% else %>
   <h1>Dados da sua proposta:</h1>
   <dl class="dl-horizontal">
-     <dt>Conhecimento: </dt><dd> <%= @current_user_proposal.requested_knowledge %></dd>
-     <dt>Email:</dt><dd> <%= @current_user_proposal.email %></dd>
-     <dt>Periodo do dia:</dt><dd> <%= @current_user_proposal.day_period %></dd>
-     <dt>Formato:</dt><dd> <%= @current_user_proposal.meeting_type %></dd>
-  </dt>
+    <dt>Proposta:</dt><dd><%= @current_user_proposal.description %></dd>
+    <dt>O que quero aprender: </dt><dd> <%= @current_user_proposal.requested_knowledge %></dd>
+    <dt>Email:</dt><dd> <%= @current_user_proposal.email %></dd>
+    <dt>Periodo do dia:</dt><dd> <%= @current_user_proposal.day_period %></dd>
+    <dt>Formato:</dt><dd> <%= @current_user_proposal.meeting_type %></dd>
+    </dt>
 <% end %>
