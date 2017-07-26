@@ -5,5 +5,6 @@ FactoryGirl.define do
     email "email@email.com"
     day_period "Qualquer periodo"
     meeting_type "Qualquer formato"
+    user
   end
 end

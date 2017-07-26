@@ -9,7 +9,7 @@ before_action :authenticate_user!, only: [:create, :new]
   end
 
   def new
-    if current_user.ad.where(active: true).any?
+    if current_user.ads.where(active: true).any?
        flash[:notice] = 'Voce ja tem um anuncio ativo'
        redirect_to root_path
     else
