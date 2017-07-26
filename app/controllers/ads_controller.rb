@@ -12,7 +12,7 @@ before_action :authenticate_user!, only: [:create, :new]
   end
 
   def new
-    if current_user.ads.where(active: true).any?
+    if current_user.ads.where(status: :active).any?
        flash[:notice] = 'Voce ja tem um anuncio ativo'
        redirect_to root_path
     else
@@ -22,7 +22,6 @@ before_action :authenticate_user!, only: [:create, :new]
 
   def create
     @ad = Ad.create(ad_params)
-    @ad.active = true
     @ad.user = current_user
     @ad.save
     redirect_to @ad

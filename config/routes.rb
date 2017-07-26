@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
 
+  get 'my_send_proposals', to: 'profiles#my_send_proposals'
   resources :profiles, only:[:new, :create, :show, :edit, :update] do
     resources :ads, only: [:index]
   end
