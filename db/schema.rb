@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170726011244) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "ad_id"
-    t.integer "status"
+    t.integer "status", default: 0
     t.index ["ad_id"], name: "index_proposals_on_ad_id"
     t.index ["user_id"], name: "index_proposals_on_user_id"
   end
