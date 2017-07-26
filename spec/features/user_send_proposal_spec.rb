@@ -6,7 +6,8 @@ feature 'user send proposal' do
     user = create(:user)
     login_as(user)
     message = 'Quero aprender Ruby on Rails!'
-    ad = FactoryGirl.create(:ad, requested_knowledge: message)
+    ad = create(:ad, requested_knowledge: message)
+    proposal = build(:proposal)
 
     # simula a acao
     visit root_path
@@ -14,22 +15,20 @@ feature 'user send proposal' do
 
     click_on 'Enviar proposta'
 
-    fill_in 'Minhas qualificaçoes sobre o tema', with: ad.requested_knowledge
-    fill_in 'Conhecimento que desejo aprender', with: ad.offered_knowledge
-    fill_in 'Email', with: 'teste@teste.com'
-    fill_in 'Periodo do dia', with: ad.day_period
-    fill_in 'Formato', with: ad.meeting_type
+    fill_in 'Minhas qualificaçoes sobre o tema', with: proposal.description
+    fill_in 'Conhecimento que desejo aprender', with: proposal.requested_knowledge
+    fill_in 'Email', with: proposal.email
+    fill_in 'Periodo do dia', with: proposal.day_period
+    fill_in 'Formato', with: proposal.meeting_type
 
     click_on 'Enviar'
 
-    # expectativa do usuario apos a acao
-    message = 'Quero aprender Ruby on Rails!'
-    expect(page).to have_css('h1', text: message)
-    expect(page).to have_css('dl', text: ad.requested_knowledge)
-    expect(page).to have_css('dl', text: ad.offered_knowledge)
-    expect(page).to have_css('dl', text: 'Email')
-    expect(page).to have_css('dl', text: ad.day_period)
-    expect(page).to have_css('dl', text: ad.meeting_type)
+    expect(page).to have_css('h1', text: 'Dados da sua proposta')
+    expect(page).to have_css('dd', text: proposal.description)
+    expect(page).to have_css('dd', text: proposal.requested_knowledge)
+    expect(page).to have_css('dd', text: proposal.email)
+    expect(page).to have_css('dd', text: proposal.day_period)
+    expect(page).to have_css('dd', text: proposal.meeting_type)
   end
 
   scenario 'and must fill all informations' do
@@ -83,9 +82,10 @@ feature 'user send proposal' do
     expect(page).not_to have_link('Enviar proposta')
 
     expect(page).to have_css('h1', text: 'Dados da sua proposta:')
-    expect(page).to have_css('dl', text: proposal.requested_knowledge)
-    expect(page).to have_css('dl', text: proposal.email)
-    expect(page).to have_css('dl', text: proposal.day_period)
-    expect(page).to have_css('dl', text: proposal.meeting_type)
+    expect(page).to have_css('dd', text: proposal.description)
+    expect(page).to have_css('dd', text: proposal.requested_knowledge)
+    expect(page).to have_css('dd', text: proposal.email)
+    expect(page).to have_css('dd', text: proposal.day_period)
+    expect(page).to have_css('dd', text: proposal.meeting_type)
     end
 end

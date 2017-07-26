@@ -12,11 +12,11 @@ feature 'Visitor create account' do
     end
 
     expect(current_path).to eq root_path
-    message = "Você ainda nao completou o seu perfil, \
-    Clique aqui para continuar"
+    message = "Você ainda nao completou o seu perfil"
     expect(page).to have_css('h2', text: message)
     expect(page).to have_link('Clique aqui')
   end
+
   scenario 'user Log in ' do
     user = create(:user, password: '123456')
 
@@ -30,8 +30,7 @@ feature 'Visitor create account' do
     end
 
     expect(current_path).to eq root_path
-    message = "Você ainda nao completou o seu perfil, \
-    Clique aqui para continuar"
+    message = "Você ainda nao completou o seu perfil"
     expect(page).to have_content(message)
   end
 
