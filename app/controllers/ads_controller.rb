@@ -1,7 +1,5 @@
 class AdsController < ApplicationController
-
-before_action :authenticate_user!, only: [:create, :new]
-
+  before_action :authenticate_user!, only: %i[create new]
 
   def show
     @ad = Ad.find(params[:id])
@@ -10,8 +8,8 @@ before_action :authenticate_user!, only: [:create, :new]
 
   def new
     if current_user.ads.where(active: true).any?
-       flash[:notice] = 'Voce ja tem um anuncio ativo'
-       redirect_to root_path
+      flash[:notice] = 'Voce ja tem um anuncio ativo'
+      redirect_to root_path
     else
       @ad = Ad.new
     end
@@ -26,18 +24,16 @@ before_action :authenticate_user!, only: [:create, :new]
   end
 
   def filter
-    @busca=params[:filter]
-    @ads = Ad.where("requested_knowledge like  ? or offered_knowledge like  ? ", "%#{@busca}%", "%#{@busca}%")
+    @busca = params[:filter]
+    @ads = Ad.where('requested_knowledge like  ? or offered_knowledge like  ? ',
+                    "%#{@busca}%", "%#{@busca}%")
   end
-
 
   private
 
-    def ad_params
-      params.require(:ad).permit( :requested_knowledge, :offered_knowledge, :meeting_type,
-                                  :day_period, :location, :avaliability)
-    end
-
-
-
+  def ad_params
+    params.require(:ad).permit(:requested_knowledge, :offered_knowledge,
+                               :meeting_type, :day_period, :location,
+                               :avaliability)
+  end
 end

@@ -1,9 +1,9 @@
 class ProposalsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  before_action :find_ad, only: [:create, :new, :show]
+  before_action :authenticate_user!, only: %i[new]
+  before_action :find_ad, only: %i[create new show]
 
   def show
-      @proposal = Proposal.find(params[:id])
+    @proposal = Proposal.find(params[:id])
   end
 
   def new
@@ -35,11 +35,13 @@ class ProposalsController < ApplicationController
   end
 
   private
+
   def find_ad
     @ad = Ad.find(params[:ad_id])
   end
 
   def proposal_params
-    params.require(:proposal).permit(:description, :requested_knowledge, :email, :day_period, :meeting_type)
+    params.require(:proposal).permit(:description, :requested_knowledge,
+                                     :email, :day_period, :meeting_type)
   end
 end
