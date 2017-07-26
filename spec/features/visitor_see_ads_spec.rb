@@ -2,40 +2,45 @@ require 'rails_helper'
 
 feature 'Visitor See Ads' do
   scenario 'successfully' do
-    #dados
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    # dados
+    create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
 
-    #navegaçao
+    # navegacao
     visit root_path
 
-    #expectativa
+    # expectativa
     expect(page).to have_css('h3', text: 'Quero aprender Ruby on Rails!')
   end
 
   scenario 'and there is no ad to show' do
-    #dados
+    # dados
 
-    #navegacao
+    # navegacao
     visit root_path
-
-    #expectativa
-    expect(page).to have_css('h3', text: 'Não temos anúncios por agora em breve novos anúncios para você. Volte logo!')
+    message = "Não temos anúncios por agora em \
+breve novos anúncios para você. Volte logo!"
+    # expectativa
+    expect(page).to have_css('h3', text: message)
   end
 
   scenario 'and see more then one ad' do
-    #dados
+    # dados
     another_user = create(:user, email: 'novo@usuario.com')
     user = create(:user, email: 'aham@usuario.com')
-    ad_ruby = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
-    ad_java = create(:ad, requested_knowledge: 'Gostaria de aprender Java for Web', user: another_user)
-    ad_marcenaria = create(:ad, requested_knowledge: 'Gostaria de aprender a fazer móveis bacanas!', user: user)
+    create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    create(:ad, requested_knowledge: 'Gostaria de aprender Java for Web',
+                user: another_user)
+    message = 'Gostaria de aprender a fazer móveis bacanas!'
+    create(:ad, requested_knowledge: message,
+                user: user)
 
-    #navegaçao
+    # navegacao
     visit root_path
 
-    #expectativa
+    # expectativa
     expect(page).to have_css('h3', text: 'Quero aprender Ruby on Rails!')
     expect(page).to have_css('h3', text: 'Gostaria de aprender Java for Web')
-    expect(page).to have_css('h3', text: 'Gostaria de aprender a fazer móveis bacanas!')
+    message = 'Gostaria de aprender a fazer móveis bacanas!'
+    expect(page).to have_css('h3', text: message)
   end
 end
