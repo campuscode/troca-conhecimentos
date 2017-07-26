@@ -34,6 +34,15 @@ class ProposalsController < ApplicationController
       redirect_to my_proposals_path
     end
 
+    def reject
+      @proposal = Proposal.find(params[:id])
+      @proposal.status = :rejected
+      @proposal.save
+      flash[:notice] = 'Proposta recusada com sucesso.'
+      redirect_to my_proposals_path
+    end
+
+
     private
     def find_ad
       @ad = Ad.find(params[:ad_id])

@@ -13,6 +13,8 @@
      <dl>Formato: <%= proposal.meeting_type %></dl>
   </dt>
   <%= link_to 'Aceitar', approve_proposal_path(proposal), method: :post %>
+  <%= link_to 'Recusar', reject_proposal_path(proposal), method: :post %>
+
 </div>
 <%end%>
 
