@@ -29,7 +29,7 @@ before_action :authenticate_user!, only: [:create, :new]
 
   def filter
     @busca = params[:filter]
-    @ads = Ad.where("requested_knowledge like  ? or offered_knowledge like  ? ", "%#{@busca}%", "%#{@busca}%")
+    @ads = Ad.active.where("requested_knowledge like ? or offered_knowledge like ?", "%#{@busca}%", "%#{@busca}%")
   end
 
   def finish

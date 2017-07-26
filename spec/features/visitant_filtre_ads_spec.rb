@@ -8,7 +8,6 @@ feature 'visitant filter ads' do
     ad = create(:ad, requested_knowledge: 'Quero aprender Culinária!')
     another_ad1 = create(:ad, requested_knowledge: 'Aprender violão', offered_knowledge: 'Ensinar Culinária')
     another_ad2 = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
-
     #navegaçao
     visit root_path
 

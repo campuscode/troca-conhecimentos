@@ -101,8 +101,7 @@ feature 'user send proposal' do
       login_as(another_user, scope: :user)
 
       visit root_path
-      click_on ad.requested_knowledge
-
-      expect(page).not_to have_link('Enviar proposta')
+      expect(page).not_to have_link(ad.requested_knowledge)
+      expect(page).to have_link('Quero aprender Java!')
     end
 end
