@@ -1,0 +1,21 @@
+<h1> Minhas propostas recebidas </h1>
+
+
+<% @proposals.each do |proposal| %>
+<div id="proposal-<%= proposal.id %>" >
+<h2> Dados da proposta: </h2>
+
+  <dt>
+     <dl>Minhas qualificaçoes sobre o tema: <%= proposal.description %></dl>
+     <dl>Conhecimento que desejo ensinar: <%=link_to proposal.requested_knowledge, proposal %></dl>
+     <dl>Email: <%= proposal.email %></dl>
+     <dl>Periodo do dia: <%= proposal.day_period %></dl>
+     <dl>Formato: <%= proposal.meeting_type %></dl>
+  </dt>
+  <%= link_to 'Aceitar', approve_proposal_path(proposal), method: :post %>
+</div>
+<%end%>
+
+
+
+<%= link_to 'Voltar', root_path %>

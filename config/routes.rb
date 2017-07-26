@@ -9,10 +9,15 @@ Rails.application.routes.draw do
   end
 
   get 'filter/ads', to: 'ads#filter'
+  get 'my_proposals', to: 'proposals#my_proposals'
 
   resources :ads, only: [:new, :create, :show] do
     post 'finish', to: 'ads#finish'
-    resources :proposals, only:[:new, :create, :show]
+    resources :proposals, only:[:new, :create]
+  end
+
+  resources :proposals, only:[:show] do
+    post 'approve', on: :member
   end
 
 end

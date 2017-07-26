@@ -1,7 +1,6 @@
 require 'rails_helper'
 feature 'Visitor create account' do
   scenario 'successfully' do
-
     visit root_path
     click_on 'Cadastrar'
 
@@ -13,9 +12,11 @@ feature 'Visitor create account' do
     end
 
     expect(current_path).to eq root_path
-    expect(page).to have_css('h2', text: 'Você ainda nao completou o seu perfil, Clique aqui para continuar')
+    message = "Você ainda nao completou o seu perfil"
+    expect(page).to have_css('h2', text: message)
     expect(page).to have_link('Clique aqui')
   end
+
   scenario 'user Log in ' do
     user = create(:user, password: '123456')
 
@@ -24,13 +25,13 @@ feature 'Visitor create account' do
 
     fill_in 'Email', with: user.email
     fill_in 'Senha', with: '123456'
-    within("div.actions")  do
+    within('div.actions')  do
       click_on 'Log in'
     end
 
     expect(current_path).to eq root_path
-    expect(page).to have_content('Você ainda nao completou o seu perfil, Clique aqui para continuar')
-
+    message = "Você ainda nao completou o seu perfil"
+    expect(page).to have_content(message)
   end
 
   scenario 'user complete' do
@@ -40,10 +41,10 @@ feature 'Visitor create account' do
     visit root_path
     click_on 'Clique aqui'
 
-    fill_in 'Nome', with:'Joao'
-    fill_in 'Data de Nascimento', with:'14/04/1992'
-    fill_in 'Cidade', with:'São Paulo'
-    fill_in 'Estado', with:'SP'
+    fill_in 'Nome', with: 'Joao'
+    fill_in 'Data de Nascimento', with: '14/04/1992'
+    fill_in 'Cidade', with: 'São Paulo'
+    fill_in 'Estado', with: 'SP'
     fill_in 'Habilidades', with: 'Sei tocar guitarra, fazer 1000 embaixadinhas!'
 
     click_on 'Enviar'
@@ -58,10 +59,10 @@ feature 'Visitor create account' do
     visit root_path
     click_on 'Clique aqui'
 
-    fill_in 'Nome', with:''
-    fill_in 'Data de Nascimento', with:''
-    fill_in 'Cidade', with:''
-    fill_in 'Estado', with:''
+    fill_in 'Nome', with: ''
+    fill_in 'Data de Nascimento', with: ''
+    fill_in 'Cidade', with: ''
+    fill_in 'Estado', with: ''
     fill_in 'Habilidades', with: ''
 
     click_on 'Enviar'
@@ -76,15 +77,14 @@ feature 'Visitor create account' do
     visit root_path
     click_on 'Clique aqui'
 
-    fill_in 'Nome', with:'Joao'
-    fill_in 'Data de Nascimento', with:'14/04/1992'
-    fill_in 'Cidade', with:'São Paulo'
-    fill_in 'Estado', with:'SP'
+    fill_in 'Nome', with: 'Joao'
+    fill_in 'Data de Nascimento', with: '14/04/1992'
+    fill_in 'Cidade', with: 'São Paulo'
+    fill_in 'Estado', with: 'SP'
     fill_in 'Habilidades', with: 'Sei tocar guitarra, fazer 1000 embaixadinhas!'
 
     click_on 'Enviar'
     click_on 'Joao'
     expect(page).to have_xpath("//img[contains(@src,'blank_profile_photo')]")
   end
-
 end

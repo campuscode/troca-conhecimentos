@@ -14,17 +14,17 @@
   </dl>
 </div>
 
-
 <% if @ad.user != current_user and @current_user_proposal.nil? and @ad.active? %>
-  <%= link_to 'Enviar proposta', new_ad_proposal_path(@ad, @proposal), class: 'btn btn-success navbar-btn'%>
+  <%= link_to 'Enviar proposta', new_ad_proposal_path(@ad), class: 'btn btn-success navbar-btn'%>
 <% elsif !@current_user_proposal.nil? %>
   <h1>Dados da sua proposta:</h1>
   <dl class="dl-horizontal">
-     <dt>Conhecimento: </dt><dd> <%= @current_user_proposal.requested_knowledge %></dd>
-     <dt>Email:</dt><dd> <%= @current_user_proposal.email %></dd>
-     <dt>Periodo do dia:</dt><dd> <%= @current_user_proposal.day_period %></dd>
-     <dt>Formato:</dt><dd> <%= @current_user_proposal.meeting_type %></dd>
-  </dt>
+    <dt>Proposta:</dt><dd><%= @current_user_proposal.description %></dd>
+    <dt>O que quero aprender: </dt><dd> <%= @current_user_proposal.requested_knowledge %></dd>
+    <dt>Email:</dt><dd> <%= @current_user_proposal.email %></dd>
+    <dt>Periodo do dia:</dt><dd> <%= @current_user_proposal.day_period %></dd>
+    <dt>Formato:</dt><dd> <%= @current_user_proposal.meeting_type %></dd>
+    </dt>
 <% end %>
 
 

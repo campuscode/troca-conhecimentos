@@ -7,4 +7,10 @@ class User < ApplicationRecord
   has_one :profile
   has_many :proposals
   has_many :ads
+  #has_many :received_proposals, through: :ad
+
+  def my_proposals
+    active_ads = ads.where(status: :active)
+    Proposal.where(ad: active_ads)
+  end
 end
