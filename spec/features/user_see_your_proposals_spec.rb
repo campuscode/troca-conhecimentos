@@ -8,14 +8,13 @@ feature 'user list his proposals' do
     ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
     proposal = create(:proposal, user: user, ad: ad, description: 'Sei tocar violao',
                       requested_knowledge: 'Quero aprender a cozinhar', email: 'eliza@teste.com',
-                      day_period: 'Manha', meeting_type: 'Online')
-    proposal.approved!
+                      day_period: 'Manha', meeting_type: 'Online', status: :approved)
 
     other_ad = create(:ad, requested_knowledge: 'Quero aprender Java')
     other_proposal = create(:proposal, user: user, ad: ad, description: 'Sei tocar violao',
                       requested_knowledge: 'Quero aprender a cozinhar', email: 'eliza@teste.com',
-                      day_period: 'Manha', meeting_type: 'Online')
-    other_proposal.pending!
+                      day_period: 'Manha', meeting_type: 'Online', status: :pending)
+
     #acao do usuario
     visit root_path
 
