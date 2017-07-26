@@ -14,9 +14,10 @@
   </dl>
 </div>
 
-<% if @current_user_proposal.nil? %>
+
+<% if @ad.user != current_user and @current_user_proposal.nil? and @ad.active? %>
   <%= link_to 'Enviar proposta', new_ad_proposal_path(@ad, @proposal), class: 'btn btn-success navbar-btn'%>
-<% else %>
+<% elsif !@current_user_proposal.nil? %>
   <h1>Dados da sua proposta:</h1>
   <dl class="dl-horizontal">
      <dt>Conhecimento: </dt><dd> <%= @current_user_proposal.requested_knowledge %></dd>
@@ -25,6 +26,7 @@
      <dt>Formato:</dt><dd> <%= @current_user_proposal.meeting_type %></dd>
   </dt>
 <% end %>
+
 
 <% if @ad.user == current_user and @ad.active? %>
   <%= link_to 'Encerrar anúncio', ad_finish_path(@ad), method: :post, class: 'btn btn-danger navbar-btn' %>
