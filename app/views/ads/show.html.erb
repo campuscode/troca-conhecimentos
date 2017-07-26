@@ -1,5 +1,10 @@
 <div class='row'>
-  <h1><%= @ad.requested_knowledge %></h1>
+  <h1>
+    <%= @ad.requested_knowledge %>
+    <% if @ad.finish? %>
+     (Anúncio encerrado)
+    <% end %>
+  </h1>
   <dl class="dl-horizontal">
     <dt>Conhecimento:</dt><dd> <%= @ad.offered_knowledge%></dd>
     <dt>Formato:</dt><dd><%= @ad.meeting_type%><br></dd>
@@ -19,4 +24,8 @@
      <dt>Periodo do dia:</dt><dd> <%= @current_user_proposal.day_period %></dd>
      <dt>Formato:</dt><dd> <%= @current_user_proposal.meeting_type %></dd>
   </dt>
+<% end %>
+
+<% if @ad.user == current_user and @ad.active? %>
+  <%= link_to 'Encerrar anúncio', ad_finish_path(@ad), method: :post, class: 'btn btn-danger navbar-btn' %>
 <% end %>

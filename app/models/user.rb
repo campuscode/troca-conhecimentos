@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :proposals
-  has_many :ad
+  has_many :ads
 end

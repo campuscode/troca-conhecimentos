@@ -5,12 +5,13 @@
     <%= image_tag 'blank_profile_photo.jpg' %>
   <% end %>
   <h3><%= @profile.name %></h3>
-  <dl>
-    <dd>Data de Nascimento: <%= I18n.l(@profile.birth_date) %></dd>
-    <dd>Cidade: <%= @profile.city %></dd>
-    <dd>Estado: <%= @profile.state %></dd>
+  <dl class="dl-horizontal">
+    <dt>Data de Nascimento:</dt><dd><%= I18n.l(@profile.birth_date) %></dd>
+    <dt>Cidade:</dt><dd><%= @profile.city %></dd>
+    <dt>Estado:</dt><dd><%= @profile.state %></dd>
   </dl>
   <label>Conhecimentos:</label>
   <p><%= @profile.skills %></p>
   <%= link_to 'Editar meu perfil', edit_profile_path, class: 'btn btn-default' %>
+  <%= link_to 'Ver Anúncios', profile_ads_path(@profile) %>
 </div>

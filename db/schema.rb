@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724232927) do
+ActiveRecord::Schema.define(version: 20170725232900) do
 
   create_table "ads", force: :cascade do |t|
     t.string "requested_knowledge"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170724232927) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.boolean "active"
+    t.integer "status"
     t.index ["user_id"], name: "index_ads_on_user_id"
   end
 
