@@ -5,10 +5,11 @@ RSpec.describe ProposalsMailer do
   describe 'Notify when recive a new purposal' do
 
       it 'successfully' do
+
         owner = User.create(email: 'teste1@mail.com', password: '123456')
         ad = Ad.create(requested_knowledge: 'Aprender a tocar guitarra', offered_knowledge: 'Programação', meeting_type: 'Presencial', day_period: 'Diurno',
                         location: 'Na livraria cultura', avaliability: 'Sabados', user: owner)
-
+        create(:profile, user: owner)
         mail = ProposalsMailer.notify_new_proposal(ad)
 
         expect(mail.subject).to eq 'Você recebeu uma nova proposta'

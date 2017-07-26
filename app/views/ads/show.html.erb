@@ -10,7 +10,7 @@
 </div>
 
 <% if @current_user_proposal.nil? %>
-  <%= link_to 'Enviar proposta', new_ad_proposal_path(@ad, @proposal), class: 'btn btn-success navbar-btn'%>
+  <%= link_to 'Enviar proposta', new_ad_proposal_path(@ad), class: 'btn btn-success navbar-btn'%>
 <% else %>
   <h1>Dados da sua proposta:</h1>
   <dl class="dl-horizontal">

@@ -3,13 +3,12 @@ class ProposalsController < ApplicationController
   before_action :find_ad, only: [:create, :new, :show]
 
   def show
-    @proposal = @ad.proposals.find(params[:id])
+      @proposal = Proposal.find(params[:id])
   end
 
   def new
     @proposal = @ad.proposals.new
   end
-
 
   def create
     @proposal = @ad.proposals.new(proposal_params)
@@ -21,6 +20,18 @@ class ProposalsController < ApplicationController
       flash[:error] = 'Houve um erro'
       render :new
     end
+  end
+
+  def my_proposals
+    @proposals = current_user.my_proposals.where(status: :pending)
+  end
+
+  def approve
+    @proposal = Proposal.find(params[:id])
+    @proposal.status = :approved
+    @proposal.save
+    flash[:notice] = 'Proposta aceita com sucesso.'
+    redirect_to my_proposals_path
   end
 
   private
