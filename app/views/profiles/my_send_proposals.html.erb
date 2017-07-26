@@ -1,14 +1,20 @@
-<h1> Suas propostas: </h1>
-<h2> Dados da proposta: </h2>
-<% @profile_proposals.each do |proposal|%>
-  <dt>
-     <dl>Minhas qualificaçoes sobre o tema: <%= proposal.description %></dl>
-     <dl>Conhecimento que desejo aprender: <%= proposal.requested_knowledge %></dl>
-     <dl>Email: <%= proposal.email %></dl>
-     <dl>Periodo do dia: <%= proposal.day_period %></dl>
-     <dl>Formato: <%= proposal.meeting_type %></dl>
-     <dl>Status: <%= proposal.status %>
-  </dt>
+
+<% if @profile_proposals.empty?%>
+  <h1> Voce nao tem propostas cadastradas </h1>
+<% else %>
+  <% if current_user.proposals.any? %>
+    <h1> Suas propostas: </h1>
+  <% @profile_proposals.each do |proposal|%>
+    <dt>
+      <dl>Minhas qualificaçoes sobre o tema: <%= proposal.description %></dl>
+      <dl>Conhecimento que desejo aprender: <%= proposal.requested_knowledge %></dl>
+      <dl>Email: <%= proposal.email %></dl>
+      <dl>Periodo do dia: <%= proposal.day_period %></dl>
+      <dl>Formato: <%= proposal.meeting_type %></dl>
+      <dl>Status: <%= proposal.status %>
+    </dt>
+  <% end %>
+ <% end %>
 <% end %>
 
 <%= link_to 'Voltar', root_path %>
