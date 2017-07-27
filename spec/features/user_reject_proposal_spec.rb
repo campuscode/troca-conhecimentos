@@ -31,7 +31,7 @@ feature 'user rejects proposal' do
                       ad: ad, status: :pending)
 
     ad2 = create(:ad, requested_knowledge: 'Piano', active: true, user: user)
-    create(:proposal, requested_knowledge: 'Piano',
+    proposal2 = create(:proposal, requested_knowledge: 'Piano',
                       ad: ad2, status: :pending)
 
     visit root_path
