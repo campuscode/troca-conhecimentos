@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727012931) do
+ActiveRecord::Schema.define(version: 20170727222427) do
 
   create_table "ads", force: :cascade do |t|
     t.string "requested_knowledge"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20170727012931) do
     t.integer "user_id"
     t.integer "status", default: 0
     t.index ["user_id"], name: "index_ads_on_user_id"
+  end
+
+  create_table "profile_reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.integer "profile_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_profile_reviews_on_profile_id"
+    t.index ["user_id"], name: "index_profile_reviews_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|

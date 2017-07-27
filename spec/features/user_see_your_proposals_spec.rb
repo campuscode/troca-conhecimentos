@@ -5,7 +5,7 @@ feature 'user list his proposals' do
     user = create(:user)
     profile = create(:profile, user: user)
     login_as(user)
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!', user: user)
     proposal = create(:proposal, user: user, ad: ad, description: 'Sei tocar violao',
                       requested_knowledge: 'Quero aprender a cozinhar', email: 'eliza@teste.com',
                       day_period: 'Manha', meeting_type: 'Online', status: :approved)
@@ -51,7 +51,7 @@ feature 'user list his proposals' do
   scenario 'user oly see your proposals' do
     user = create(:user)
     profile = create(:profile, user: user)
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!', user: user)
     proposal = create(:proposal, user: user, ad: ad, description: 'Sei tocar violao',
                       requested_knowledge: 'Quero aprender a cozinhar', email: 'eliza@teste.com',
                       day_period: 'Manha', meeting_type: 'Online', status: :approved)

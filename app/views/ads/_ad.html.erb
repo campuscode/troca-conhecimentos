@@ -1,9 +1,10 @@
-<h3><%= link_to ad.requested_knowledge, ad_path(ad) %></h3>
-
-<dl class="dl-horizontal">
-    <dt>Conhecimento:</dt><dd> <%= link_to ad.offered_knowledge, ad %></dd>
-    <dt>Formato:</dt><dd><%= ad.meeting_type%><br></dd>
-    <dt>Periodo:</dt><dd><%= ad.day_period%><br></dd>
-    <dt>Localizacao:</dt><dd><%= ad.location%><br></dd>
-    <dt>Quando:</dt><dd><%= ad.avaliability%><br></dd>
-</dl>
+<div class="box-ad">
+  <h3><%= link_to ad.requested_knowledge, ad_path(ad) %></h3>
+  <dl class="dl-horizontal">
+      <dt>Conhecimento:</dt><dd> <%= link_to ad.offered_knowledge, ad %></dd>
+      <dt>Formato:</dt><dd><%= ad.meeting_type%><br></dd>
+      <dt>Periodo:</dt><dd><%= ad.day_period%><br></dd>
+      <dt>Localizacao:</dt><dd><%= ad.location%><br></dd>
+      <dt>Quando:</dt><dd><%= ad.avaliability%><br></dd>
+  </dl>
+</div>

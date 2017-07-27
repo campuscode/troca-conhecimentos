@@ -27,8 +27,8 @@ feature 'User review another user' do
     click_on 'Enviar'
 
     #expectativa
-    expect(page).to have_css('h1', text: user.profile.name)
+    expect(page).to have_css('h3', text: user.profile.name)
     expect(page).to have_css('dd', text: '4')
-    expect(page).to have_css('dd', text: 'O usuário é muito atencioso e sabe ensinar bem.')
+    expect(page).to have_css('p', text: 'O usuário é muito atencioso e sabe ensinar bem.')
   end
 end

@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one :profile
   has_many :proposals
   has_many :ads
+  has_many :profile_reviews
   #has_many :received_proposals, through: :ad
 
   def my_proposals

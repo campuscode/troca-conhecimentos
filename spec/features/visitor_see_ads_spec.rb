@@ -19,7 +19,7 @@ feature 'Visitor See Ads' do
     visit root_path
     message = "Não temos anúncios por agora em breve novos anúncios para você. Volte logo!"
     # expectativa
-    expect(page).to have_css('h3', text: message)
+    expect(page).to have_css('h4', text: message)
   end
 
   scenario 'and see more then one ad' do

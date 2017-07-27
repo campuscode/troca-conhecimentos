@@ -14,4 +14,13 @@
   <p><%= @profile.skills %></p>
   <%= link_to 'Editar meu perfil', edit_profile_path, class: 'btn btn-default' %>
   <%= link_to 'Ver Anúncios', profile_ads_path(@profile) %>
+
+  <h4>Avaliações</h4>
+  <% @profile.profile_reviews.each do |review| %>
+    <dl class="dl-horizontal">
+      <dt>Nota:</dt><dd><%= review.rating %></dd>
+    </dl>
+    <label>Comentários:</label>
+    <p><%= review.comment %></p>
+  <% end %>
 </div>
