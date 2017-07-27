@@ -27,7 +27,6 @@ class ProposalsController < ApplicationController
   end
 
     def approve
-
       @proposal = Proposal.find(params[:id])
       @proposal.approved!
 
