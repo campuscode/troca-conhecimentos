@@ -18,7 +18,7 @@ feature 'User receives a notification for new proposals' do
     fill_in 'Periodo do dia', with: 'Diurno'
     fill_in 'Formato', with: 'Presencial lá em casa'
 
-    expect(ProposalsMailer).to receive(:notify_new_proposal).with(ad)
+    expect(ProposalMailer).to receive(:notify_new_proposal).with(ad)
 
     click_on 'Enviar'
   end
