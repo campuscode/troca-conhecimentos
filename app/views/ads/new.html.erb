@@ -1,39 +1,39 @@
 <h1>Novo anúncio</h1>
+  <div class='row'>
+    <div class='col-md-12'>
+     <%= form_for  @ad do |f| %>
 
- <%= form_for  @ad do |f| %>
+        <div class="form-group">
+          <%= f.label :requested_knowledge, 'A oferecer' %>
+          <%= f.text_field :requested_knowledge, class: 'form-control' %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label :requested_knowledge, 'A oferecer' %>
-      <%= f.text_field :requested_knowledge, class: 'form-control' %>
+       <div class="form-group">
+         <%= f.label :offered_knowledge, 'A Aprender' %>
+         <%= f.text_field :offered_knowledge, class: 'form-control' %>
+       </div>
+
+       <div class="form-group">
+         <%= f.label :meeting_type, 'Meeting' %>
+         <%= f.text_field :meeting_type, class: 'form-control' %>
+       </div>
+
+       <div class="form-group">
+         <%= f.label :day_period, 'Periodo' %>
+         <%= f.text_field :day_period, class: 'form-control' %>
+       </div>
+
+       <div class="form-group">
+         <%= f.label :location, 'Localizacao' %>
+         <%= f.text_field :location, class: 'form-control' %>
+       </div>
+
+       <div class="form-group">
+         <%= f.label :avaliability, 'Quando' %>
+         <%= f.text_field :avaliability, class: 'form-control' %>
+       </div>
+
+         <%= f.submit 'Enviar', class: "btn btn-default" %>
+     <% end %>
     </div>
-
-   <div class="form-group">
-     <%= f.label :offered_knowledge, 'A Aprender' %>
-     <%= f.text_field :offered_knowledge, class: 'form-control' %>
-   </div>
-
-   <div class="form-group">
-     <%= f.label :meeting_type, 'Meeting' %>
-     <%= f.text_field :meeting_type, class: 'form-control' %>
-   </div>
-
-   <div class="form-group">
-     <%= f.label :day_period, 'Periodo' %>
-     <%= f.text_field :day_period, class: 'form-control' %>
-   </div>
-
-   <div class="form-group">
-     <%= f.label :location, 'Localizacao' %>
-     <%= f.text_field :location, class: 'form-control' %>
-   </div>
-
-   <div class="form-group">
-     <%= f.label :avaliability, 'Quando' %>
-     <%= f.text_field :avaliability, class: 'form-control' %>
-   </div>
-
-   <div class="form-group">
-     <%= f.submit 'Enviar' %>
-   </div>
-
- <% end %>
+  </div>

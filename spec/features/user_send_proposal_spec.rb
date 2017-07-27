@@ -88,4 +88,20 @@ feature 'user send proposal' do
     expect(page).to have_css('dd', text: proposal.day_period)
     expect(page).to have_css('dd', text: proposal.meeting_type)
     end
+
+    scenario 'and ad is finished' do
+      user = create(:user)
+      create(:profile, name: 'Joao Henrique', user: user)
+      ad = create(:ad, user: user, requested_knowledge: 'Quero aprender Rails!', status: :finish)
+
+      another_user = create(:user, email: 'anotheruser@gmail.com')
+      create(:profile, name: 'Pedro Alvares', user: another_user)
+      create(:ad, user: another_user, requested_knowledge: 'Quero aprender Java!')
+
+      login_as(another_user, scope: :user)
+
+      visit root_path
+      expect(page).not_to have_link(ad.requested_knowledge)
+      expect(page).to have_link('Quero aprender Java!')
+    end
 end
