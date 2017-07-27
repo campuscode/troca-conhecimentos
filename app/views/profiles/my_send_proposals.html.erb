@@ -13,6 +13,7 @@
       <dl>Formato: <%= proposal.meeting_type %></dl>
       <dl>Status: <%= proposal.status %>
     </dt>
+    <%= link_to 'Avaliar troca de conhecimento', new_profile_review_path(proposal.ad.user.profile)%>
   <% end %>
  <% end %>
 <% end %>

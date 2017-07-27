@@ -20,6 +20,7 @@ feature 'user list his proposals' do
 
     click_on 'Minhas propostas'
 
+    #expectativa
     expect(page).to have_css('h1', text: 'Suas propostas:')
     expect(page).to have_css('dl', text: proposal.requested_knowledge)
     expect(page).to have_css('dl', text: 'Email')
@@ -33,7 +34,6 @@ feature 'user list his proposals' do
     expect(page).to have_css('dl', text: other_proposal.day_period)
     expect(page).to have_css('dl', text: other_proposal.meeting_type)
     expect(page).to have_css('dl', text: other_proposal.status)
-    #expectativa
   end
 
   scenario 'user has no proposals' do

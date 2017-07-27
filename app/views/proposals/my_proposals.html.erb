@@ -5,17 +5,20 @@
 <div id="proposal-<%= proposal.id %>" >
 <h2> Dados da proposta: </h2>
 
-  <dt>
-     <dl>Minhas qualificaçoes sobre o tema: <%= proposal.description %></dl>
-     <dl>Conhecimento que desejo ensinar: <%=link_to proposal.requested_knowledge, proposal %></dl>
-     <dl>Email: <%= proposal.email %></dl>
-     <dl>Periodo do dia: <%= proposal.day_period %></dl>
-     <dl>Formato: <%= proposal.meeting_type %></dl>
-  </dt>
+  <dl>
+    <dt> Anuncio:</dt><dd><%=link_to proposal.ad.requested_knowledge, proposal.ad %></dd>
+
+     <dt>Conhecimento que desejo aprender:</dt><dd> <%= proposal.requested_knowledge %></dd>
+     <dt>Email:</dt><dd> <%= proposal.email %></dd>
+     <dt>Periodo do dia:</dt><dd> <%= proposal.day_period %></dd>
+     <dt>Formato:</dt><dd> <%= proposal.meeting_type %></dd>
+  </dl>
+  <h3>Minhas qualificaçoes sobre o tema:</h3>
+  <p>
+    <%= proposal.description %>
+  </p>
   <%= link_to 'Aceitar', approve_proposal_path(proposal), method: :post %>
 </div>
 <%end%>
-
-
 
 <%= link_to 'Voltar', root_path %>

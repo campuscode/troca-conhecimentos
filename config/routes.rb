@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   get 'my_send_proposals', to: 'profiles#my_send_proposals'
+
   resources :profiles, only:[:new, :create, :show, :edit, :update] do
     resources :ads, only: [:index]
+    resources :reviews, only: [:new, :create]
   end
 
   get 'filter/ads', to: 'ads#filter'

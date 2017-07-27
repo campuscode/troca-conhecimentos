@@ -17,8 +17,7 @@ feature 'Visitor See Ads' do
 
     # navegacao
     visit root_path
-    message = "Não temos anúncios por agora em \
-breve novos anúncios para você. Volte logo!"
+    message = "Não temos anúncios por agora em breve novos anúncios para você. Volte logo!"
     # expectativa
     expect(page).to have_css('h3', text: message)
   end
