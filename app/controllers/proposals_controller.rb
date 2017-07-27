@@ -2,10 +2,6 @@ class ProposalsController < ApplicationController
   before_action :authenticate_user!, only: %i[new]
   before_action :find_ad, only: %i[create new show]
 
-  def show
-    @proposal = Proposal.find(params[:id])
-  end
-
   def new
     @proposal = @ad.proposals.new
   end
@@ -23,17 +19,30 @@ class ProposalsController < ApplicationController
   end
 
   def my_proposals
-    @proposals = current_user.my_proposals.where(status: :pending)
+    @proposals_approved = current_user.my_proposals.approved
+    @proposals_rejected = current_user.my_proposals.rejected
+    @proposals_pending = current_user.my_proposals.pending
+
+
   end
 
-    def approve
-      @proposal = Proposal.find(params[:id])
-      @proposal.approved!
+  def approve
+    @proposal = Proposal.find(params[:id])
+    @proposal.approved!
 
-      flash[:notice] = 'Proposta aceita com sucesso.'
-      ProposalMailer.notify_proposal_accepted(@proposal).deliver_now
-      redirect_to my_proposals_path
-    end
+    flash[:notice] = 'Proposta aceita com sucesso.'
+    ProposalMailer.notify_proposal_accepted(@proposal).deliver_now
+    redirect_to my_proposals_path
+  end
+
+  def reject
+    @proposal = Proposal.find(params[:id])
+    @proposal.rejected!
+
+    flash[:notice] = 'Proposta recusada com sucesso.'
+    redirect_to my_proposals_path
+  end
+
 
   private
 
