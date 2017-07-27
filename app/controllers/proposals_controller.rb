@@ -27,10 +27,12 @@ class ProposalsController < ApplicationController
     end
 
     def approve
+
       @proposal = Proposal.find(params[:id])
-      @proposal.status = :approved
-      @proposal.save
+      @proposal.approved!
+
       flash[:notice] = 'Proposta aceita com sucesso.'
+      ProposalMailer.notify_proposal_accepted(@proposal).deliver_now
       redirect_to my_proposals_path
     end
 

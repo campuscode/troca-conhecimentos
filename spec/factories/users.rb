@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
     email
-    password  '123456' 
+    password  '123456'
   end
 
   sequence :email do |n|
