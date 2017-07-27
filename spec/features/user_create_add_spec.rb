@@ -1,7 +1,6 @@
 require 'rails_helper'
 
  feature 'User create Ad' do
-
    scenario 'successfully' do
      user = create(:user)
      login_as(user)
@@ -18,7 +17,7 @@ require 'rails_helper'
 
      click_on 'Enviar'
 
-     #expect strang things
+     # expect strang things
      expect(page).to have_css('h1', text: 'Quero aprender Ruby on Rails!')
      expect(page).to have_css('dl', text: 'sei python')
      expect(page).to have_css('dl', text: 'presencial')
@@ -26,5 +25,4 @@ require 'rails_helper'
      expect(page).to have_css('dl', text: 'Sao paulo')
      expect(page).to have_css('dl', text: 'um mes')
    end
-
  end

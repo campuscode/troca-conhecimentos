@@ -6,12 +6,13 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*'  
+    - 'spec/**/*'
 AllCops:
   TargetRubyVersion: 2.3
   CacheRootDirectory: 'tmp/.cache/rubocop-cache/'
   Include:
     - '**/Rakefile'
+    - '**/Gemfile'
     - '**/config.ru'
   Exclude:
     - 'bin/**/*'

@@ -5,7 +5,7 @@ feature 'user rejects proposal' do
     user = create(:user)
     login_as(user)
     ad = create(:ad, requested_knowledge: 'aprender ruby',
-                     active: true, user: user)
+                     status: :active, user: user)
     create(:proposal, requested_knowledge: 'aprender ruby',
                       ad: ad, status: :pending)
 
@@ -26,11 +26,11 @@ feature 'user rejects proposal' do
     login_as(user)
 
     ad = create(:ad, requested_knowledge: 'aprender ruby',
-                     active: true, user: user)
+                     status: :active, user: user)
     create(:proposal, requested_knowledge: 'aprender ruby',
                       ad: ad, status: :pending)
 
-    ad2 = create(:ad, requested_knowledge: 'Piano', active: true, user: user)
+    ad2 = create(:ad, requested_knowledge: 'Piano', status: :active, user: user)
     proposal2 = create(:proposal, requested_knowledge: 'Piano',
                       ad: ad2, status: :pending)
 

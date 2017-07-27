@@ -7,17 +7,17 @@ feature 'user can see all proposals' do
     login_as(user)
 
     ad = create(:ad, requested_knowledge: 'aprender Ruby on Rails!',
-                     active: true, user: user)
+                     status: :active, user: user)
     create(:proposal, ad: ad, status: :approved,
                       requested_knowledge: 'aprender Ruby on Rails!')
 
     ad2 = create(:ad, requested_knowledge: 'Quero aprender Piano!',
-                      active: true, user: user)
+                      status: :active, user: user)
     create(:proposal, ad: ad2, status: :pending,
                       requested_knowledge: 'Quero aprender Piano!')
 
     ad3 = create(:ad, requested_knowledge: 'aprender guitarra!',
-                      active: true, user: user)
+                      status: :active, user: user)
     create(:proposal, ad: ad3, status: :rejected,
                       requested_knowledge: 'aprender guitarra!')
 

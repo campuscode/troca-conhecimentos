@@ -1,14 +1,18 @@
 require 'rails_helper'
 
 feature 'User accept proposal' do
-
   scenario 'sucessfully' do
     user = create(:user)
     login_as(user)
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!', active: true, user: user)
-    proposal = create(:proposal, requested_knowledge: 'Quero aprender Ruby on Rails!', ad: ad, status: :pending)
+    profile = create(:profile, name: 'Joao', user: user)
+    ad = create(:ad, status: :active, user: user,
+                     requested_knowledge: 'Quero aprender Ruby on Rails!')
+    create(:proposal, ad: ad, status: :pending,
+                      requested_knowledge: 'Quero aprender Ruby on Rails!',
+                      user: user)
 
     visit root_path
+
     click_on 'Propostas recebidas'
     click_on 'Aceitar'
 
@@ -20,15 +24,19 @@ feature 'User accept proposal' do
 
   scenario 'and there are another proposals' do
     user = create(:user)
+    profile = create(:profile, name: 'Joao', user: user)
+    ad = create(:ad, status: :active, user: user,
+                     requested_knowledge: 'Quero aprender Ruby on Rails!')
+    create(:proposal, ad: ad, status: :pending,
+                      requested_knowledge: 'Quero aprender Ruby on Rails!')
+
+    ad2 = create(:ad, status: :active, user: user,
+                      requested_knowledge: 'Quero aprender Piano!')
+    proposal2 = create(:proposal, ad: ad2, status: :pending,
+                      requested_knowledge: 'Quero aprender Piano!',
+                      user: user)
 
     login_as(user)
-
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!', active: true, user: user)
-    proposal = create(:proposal, requested_knowledge: 'Quero aprender Ruby on Rails!', ad: ad, status: :pending)
-
-    ad2 = create(:ad, requested_knowledge: 'Quero aprender Piano!', active: true, user: user)
-    proposal2 = create(:proposal, requested_knowledge: 'Quero aprender Piano!', ad: ad2, status: :pending)
-
     visit root_path
     click_on 'Propostas recebidas'
     within("div\#proposal-#{proposal2.id}") do
@@ -40,5 +48,4 @@ feature 'User accept proposal' do
       expect(page).to have_content('Quero aprender Piano!')
     end
   end
-
 end
