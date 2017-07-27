@@ -14,7 +14,7 @@ class ProposalsController < ApplicationController
     @proposal = @ad.proposals.new(proposal_params)
     @proposal.user = current_user
     if @proposal.save
-      ProposalsMailer.notify_new_proposal(@ad)
+      ProposalMailer.notify_new_proposal(@ad)
       redirect_to @ad
     else
       flash[:error] = 'Houve um erro'
@@ -26,13 +26,15 @@ class ProposalsController < ApplicationController
     @proposals = current_user.my_proposals.where(status: :pending)
   end
 
-  def approve
-    @proposal = Proposal.find(params[:id])
-    @proposal.status = :approved
-    @proposal.save
-    flash[:notice] = 'Proposta aceita com sucesso.'
-    redirect_to my_proposals_path
-  end
+    def approve
+
+      @proposal = Proposal.find(params[:id])
+      @proposal.approved!
+
+      flash[:notice] = 'Proposta aceita com sucesso.'
+      ProposalMailer.notify_proposal_accepted(@proposal).deliver_now
+      redirect_to my_proposals_path
+    end
 
   private
 

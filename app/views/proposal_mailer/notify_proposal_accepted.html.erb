@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Parabens! Sua proposta foi aceita!</h1>
+    <p>
+      Ola, <%= @user.profile.name %>, voce cadastrou uma proposta para o anuncio <%= @ad.title %> e ela foi aceita.
+    </p>
+    <p>
+      para ver a sua proposta, clique : <%= @url %>.
+    </p>
+  </body>
+</html>
