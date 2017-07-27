@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 feature 'User accept proposal' do
-
   scenario 'sucessfully' do
     user = create(:user)
     login_as(user)
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!', user: user)
-    proposal = create(:proposal, requested_knowledge: 'Quero aprender Ruby on Rails!', ad: ad, status: :pending)
+    ad = create(:ad, status: :active, user: user,
+                     requested_knowledge: 'Quero aprender Ruby on Rails!')
+    create(:proposal, ad: ad, status: :pending,
+                      requested_knowledge: 'Quero aprender Ruby on Rails!')
 
     visit root_path
     click_on 'Propostas recebidas'
@@ -16,17 +17,20 @@ feature 'User accept proposal' do
     expect(page).not_to have_content('Quero aprender Ruby on Rails!')
   end
 
-
   scenario 'and there are another proposals' do
     user = create(:user)
 
     login_as(user)
 
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!', user: user)
-    proposal = create(:proposal, requested_knowledge: 'Quero aprender Ruby on Rails!', ad: ad, status: :pending)
+    ad = create(:ad, status: :active, user: user,
+                     requested_knowledge: 'Quero aprender Ruby on Rails!')
+    create(:proposal, ad: ad, status: :pending,
+                      requested_knowledge: 'Quero aprender Ruby on Rails!')
 
-    ad2 = create(:ad, requested_knowledge: 'Quero aprender Piano!', user: user)
-    proposal2 = create(:proposal, requested_knowledge: 'Quero aprender Piano!', ad: ad2, status: :pending)
+    ad2 = create(:ad, status: :active, user: user,
+                      requested_knowledge: 'Quero aprender Piano!')
+    proposal2 = create(:proposal, ad: ad2, status: :pending,
+                      requested_knowledge: 'Quero aprender Piano!')
 
     visit root_path
     click_on 'Propostas recebidas'
@@ -34,10 +38,7 @@ feature 'User accept proposal' do
       click_on 'Aceitar'
     end
 
-
     expect(page).to have_content('Proposta aceita com sucesso.')
     expect(page).not_to have_content('Quero aprender Piano!')
-
   end
-
 end

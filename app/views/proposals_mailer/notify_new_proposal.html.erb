@@ -1,0 +1,21 @@
+<html>
+  <head>
+       <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  </head>
+
+  <body>
+    <h2>Olá <%= @ad.user.name%></h2>
+    <h3>Você recebeu uma nova proposta para: </h3>
+    <div class='row'>
+      <h1><%= @ad.requested_knowledge %></h1>
+      <ul>
+        <li>Conhecimento: <%= @ad.offered_knowledge%></li>
+        <li>Formato: <%= @ad.meeting_type%></li>
+        <li>Periodo: <%= @ad.day_period%></li>
+        <li>Localizacao: <%= @ad.location%></li>
+        <li>Quando: <%= @ad.avaliability%></li>
+      </ul>
+    </div>
+  </body>
+
+</html>

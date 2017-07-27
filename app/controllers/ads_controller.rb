@@ -1,6 +1,5 @@
 class AdsController < ApplicationController
-
-before_action :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, only: %i[create new]
 
   def index
     @ads = current_user.ads
@@ -29,7 +28,8 @@ before_action :authenticate_user!, only: [:create, :new]
 
   def filter
     @busca = params[:filter]
-    @ads = Ad.active.where("requested_knowledge like ? or offered_knowledge like ?", "%#{@busca}%", "%#{@busca}%")
+    @ads = Ad.where('requested_knowledge like  ? or offered_knowledge like  ? ',
+                    "%#{@busca}%", "%#{@busca}%")
   end
 
   def finish
@@ -40,11 +40,9 @@ before_action :authenticate_user!, only: [:create, :new]
 
   private
 
-    def ad_params
-      params.require(:ad).permit( :requested_knowledge, :offered_knowledge, :meeting_type,
-                                  :day_period, :location, :avaliability)
-    end
-
-
-
+  def ad_params
+    params.require(:ad).permit(:requested_knowledge, :offered_knowledge,
+                               :meeting_type, :day_period, :location,
+                               :avaliability)
+  end
 end
