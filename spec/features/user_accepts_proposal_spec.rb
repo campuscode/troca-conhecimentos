@@ -13,9 +13,10 @@ feature 'User accept proposal' do
     click_on 'Aceitar'
 
     expect(page).to have_content('Proposta aceita com sucesso.')
-    expect(page).not_to have_content('Quero aprender Ruby on Rails!')
+    within("div\#proposal-approved") do
+      expect(page).to have_content('Quero aprender Ruby on Rails!')
+    end
   end
-
 
   scenario 'and there are another proposals' do
     user = create(:user)
@@ -34,10 +35,10 @@ feature 'User accept proposal' do
       click_on 'Aceitar'
     end
 
-
     expect(page).to have_content('Proposta aceita com sucesso.')
-    expect(page).not_to have_content('Quero aprender Piano!')
-
+    within("div\#proposal-approved") do
+      expect(page).to have_content('Quero aprender Piano!')
+    end
   end
 
 end

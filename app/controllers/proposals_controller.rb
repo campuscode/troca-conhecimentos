@@ -23,7 +23,11 @@ class ProposalsController < ApplicationController
     end
 
     def my_proposals
-      @proposals = current_user.my_proposals.where(status: :pending)
+      @proposals_approved = current_user.my_proposals.approved
+      @proposals_rejected = current_user.my_proposals.rejected
+      @proposals_pending = current_user.my_proposals.pending
+
+
     end
 
     def approve
@@ -36,8 +40,8 @@ class ProposalsController < ApplicationController
 
     def reject
       @proposal = Proposal.find(params[:id])
-      @proposal.status = :rejected
-      @proposal.save
+      @proposal.rejected!
+
       flash[:notice] = 'Proposta recusada com sucesso.'
       redirect_to my_proposals_path
     end

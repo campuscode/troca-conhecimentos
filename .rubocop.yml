@@ -4,6 +4,9 @@ Rails:
   Enabled: true
 Style/FrozenStringLiteralComment:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'  
 AllCops:
   TargetRubyVersion: 2.3
   CacheRootDirectory: 'tmp/.cache/rubocop-cache/'
@@ -17,4 +20,3 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'spec/rails_helper.rb'
-
