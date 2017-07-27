@@ -9,7 +9,7 @@
       Ola, <%= @user.profile.name %>, voce cadastrou uma proposta para o anuncio <%= @ad.title %> e ela foi aceita.
     </p>
     <p>
-      para ver a sua proposta, clique : <%= @url %>.
+      para ver a sua proposta, clique : <%= link_to 'Ver Proposta', @ad  %>.
     </p>
   </body>
 </html>
