@@ -1,15 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe ProposalMailer do
-  describe "#notify_proposal_accepted" do
-
-    it "create the mail correctly" do
+  describe '#notify_proposal_accepted' do
+    it 'create the mail correctly' do
       user = create(:user, email: 'joao@campuscode.com.br')
-      profile = create(:profile, name: 'Joao', user: user)
+      create(:profile, name: 'Joao', user: user)
       owner = create(:user, email: 'owner@teste.com')
       ad = create(:ad, title: 'Urgente, aprender alemão!', user: owner)
       proposal = create(:proposal, ad: ad, user: user, status: :approved)
-
 
       mail = ProposalMailer.notify_proposal_accepted(proposal)
 
