@@ -39,15 +39,13 @@ class AdsController < ApplicationController
   end
 
   def my_ads
-    @ads = current_user.ads.where(status: :active)
+    @ads = current_user.ads.active
   end
 
   def cancel
     @ad = Ad.find(params[:ad_id])
     @ad.cancelled!
-    if @ad.save
-      flash[:notice] = 'Anuncio cancelado com sucesso.'
-    end
+    flash[:notice] = 'Anuncio cancelado com sucesso.'
     redirect_to my_ads_url
   end
 
