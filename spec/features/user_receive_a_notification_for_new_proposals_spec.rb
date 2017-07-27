@@ -5,7 +5,9 @@ feature 'User receives a notification for new proposals' do
 
 
     ad_owner = create(:user, email: 'owner@mail.com')
+    create(:profile, user: ad_owner)
     user = create(:user, email: 'user@mail.com')
+    create(:profile, user: user)
     ad = create(:ad, user: ad_owner, requested_knowledge: 'Aprender a assobiar')
 
     login_as(user)
@@ -19,6 +21,7 @@ feature 'User receives a notification for new proposals' do
     fill_in 'Formato', with: 'Presencial lá em casa'
 
     expect(ProposalMailer).to receive(:notify_new_proposal).with(ad)
+                                                           .and_call_original
 
     click_on 'Enviar'
   end

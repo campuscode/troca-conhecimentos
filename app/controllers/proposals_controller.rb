@@ -10,7 +10,7 @@ class ProposalsController < ApplicationController
     @proposal = @ad.proposals.new(proposal_params)
     @proposal.user = current_user
     if @proposal.save
-      ProposalMailer.notify_new_proposal(@ad)
+      ProposalMailer.notify_new_proposal(@ad).deliver_now
       redirect_to @ad
     else
       flash[:error] = 'Houve um erro'
