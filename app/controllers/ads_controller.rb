@@ -1,5 +1,5 @@
 class AdsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create new]
+  before_action :authenticate_user!, only: %i[create new my_ads]
 
   def index
     @ads = current_user.ads
@@ -36,6 +36,19 @@ class AdsController < ApplicationController
     @ad = Ad.find(params[:ad_id])
     @ad.finish!
     redirect_to @ad
+  end
+
+  def my_ads
+    @ads = current_user.ads.where(status: :active)
+  end
+
+  def cancel
+    @ad = Ad.find(params[:ad_id])
+    @ad.cancelled!
+    if @ad.save
+      flash[:notice] = 'Anuncio cancelado com sucesso.'
+    end
+    redirect_to my_ads_url
   end
 
   private
