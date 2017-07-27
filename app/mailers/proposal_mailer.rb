@@ -2,7 +2,8 @@ class ProposalMailer < ApplicationMailer
   def notify_proposal_accepted(proposal)
     @ad = proposal.ad
     @user = proposal.user
-    @url  = 'http://example.com/login'
+    @url  = proposal_url(proposal)
+
     mail(to: @user.email, subject: 'Parabens! Sua proposta foi aceita!')
   end
 
