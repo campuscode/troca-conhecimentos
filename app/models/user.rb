@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :ads
 
   def my_proposals
-    active_ads = ads.where(active: true)
+    active_ads = ads.where(status: :active)
     Proposal.where(ad: active_ads)
   end
 end

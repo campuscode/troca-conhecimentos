@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @ads = Ad.all
+    @ads = Ad.all.where(status: :active)
   end
 end

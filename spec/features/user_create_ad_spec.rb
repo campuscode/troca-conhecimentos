@@ -43,7 +43,7 @@ feature 'User create Ad' do
 
     user = create(:user)
     login_as(user, scope: :user)
-    ad = create(:ad, user: user, active: true)
+    ad = create(:ad, user: user)
 
 
     visit new_ad_path
@@ -55,7 +55,7 @@ feature 'User create Ad' do
 
     user = create(:user)
     login_as(user, scope: :user)
-    ad = create(:ad, user: user, active: true)
+    ad = create(:ad, user: user)
 
     visit root_path
 
