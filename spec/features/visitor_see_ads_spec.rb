@@ -43,4 +43,18 @@ breve novos anúncios para você. Volte logo!"
     message = 'Gostaria de aprender a fazer móveis bacanas!'
     expect(page).to have_css('h3', text: message)
   end
+
+  scenario 'and dont see finished ads' do
+    # dados
+    user = create(:user, email: 'aham@usuario.com')
+    create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!', user: user, status: :finish)
+    create(:ad, requested_knowledge: 'Gostaria de aprender Java for Web', user: user)
+
+    # navegacao
+    visit root_path
+
+    # expectativa
+    expect(page).not_to have_css('h3', text: 'Quero aprender Ruby on Rails!')
+    expect(page).to have_css('h3', text: 'Gostaria de aprender Java for Web')
+  end
 end

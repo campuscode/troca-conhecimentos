@@ -38,7 +38,7 @@ feature 'User create Ad' do
 
     user = create(:user)
     login_as(user, scope: :user)
-    create(:ad, user: user, active: true)
+    create(:ad, user: user)
 
 
     visit new_ad_path
@@ -49,7 +49,7 @@ feature 'User create Ad' do
 
     user = create(:user)
     login_as(user, scope: :user)
-    create(:ad, user: user, active: true)
+    create(:ad, user: user)
 
     visit root_path
     expect(page).not_to have_content('Criar Anuncio')

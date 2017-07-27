@@ -7,7 +7,7 @@ RSpec.describe ProposalMailer do
       user = create(:user, email: 'joao@campuscode.com.br')
       profile = create(:profile, name: 'Joao', user: user)
       owner = create(:user, email: 'owner@teste.com')
-      ad = create(:ad, title: 'Urgente, aprender alemão!', user: owner, active: true)
+      ad = create(:ad, title: 'Urgente, aprender alemão!', user: owner)
       proposal = create(:proposal, ad: ad, user: user, status: :approved)
 
 

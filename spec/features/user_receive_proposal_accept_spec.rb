@@ -5,7 +5,7 @@ feature 'User receive a mail' do
     user = create(:user)
     profile = create(:profile, name: 'Rogerio bispo', user: user)
     owner = create(:user, email: 'owner@teste.com')
-    ad = create(:ad, title: 'Urgente, aprender alemão!', user: owner, active: true)
+    ad = create(:ad, title: 'Urgente, aprender alemão!', user: owner)
 
     proposal = create(:proposal, ad: ad, user: user)
     proposal.pending!

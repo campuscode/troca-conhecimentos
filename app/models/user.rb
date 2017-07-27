@@ -6,12 +6,12 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :proposals
+  delegate :name, to: :profile
+
   has_many :ads
-  #has_many :received_proposals, through: :ad
 
   def my_proposals
-    active_ads = ads.where(active: true)
+    active_ads = ads.where(status: :active)
     Proposal.where(ad: active_ads)
   end
-
 end

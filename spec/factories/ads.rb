@@ -6,7 +6,7 @@ FactoryGirl.define do
     day_period 'A noite'
     location 'No metrô'
     avaliability 'Em janeiro'
-    active false
+    status :active
     user
   end
 end

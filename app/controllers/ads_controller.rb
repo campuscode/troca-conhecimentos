@@ -1,7 +1,9 @@
 class AdsController < ApplicationController
+  before_action :authenticate_user!, only: %i[create new]
 
-before_action :authenticate_user!, only: [:create, :new]
-
+  def index
+    @ads = current_user.ads
+  end
 
   def show
     @ad = Ad.find(params[:id])
@@ -9,7 +11,7 @@ before_action :authenticate_user!, only: [:create, :new]
   end
 
   def new
-    if current_user.ads.where(active: true).any?
+    if current_user.ads.where(status: :active).any?
        flash[:notice] = 'Voce ja tem um anuncio ativo'
        redirect_to root_path
     else
@@ -19,23 +21,28 @@ before_action :authenticate_user!, only: [:create, :new]
 
   def create
     @ad = Ad.create(ad_params)
-    @ad.active = true
     @ad.user = current_user
     @ad.save
     redirect_to @ad
   end
 
   def filter
-    @busca=params[:filter]
-    @ads = Ad.where("requested_knowledge like  ? or offered_knowledge like  ? ", "%#{@busca}%", "%#{@busca}%")
+    @busca = params[:filter]
+    @ads = Ad.where('requested_knowledge like  ? or offered_knowledge like  ? ',
+                    "%#{@busca}%", "%#{@busca}%")
   end
 
+  def finish
+    @ad = Ad.find(params[:ad_id])
+    @ad.finish!
+    redirect_to @ad
+  end
 
   private
 
-    def ad_params
-      params.require(:ad).permit( :requested_knowledge, :offered_knowledge, :meeting_type,
-                                  :day_period, :location, :avaliability)
-    end
-
+  def ad_params
+    params.require(:ad).permit(:requested_knowledge, :offered_knowledge,
+                               :meeting_type, :day_period, :location,
+                               :avaliability)
+  end
 end
