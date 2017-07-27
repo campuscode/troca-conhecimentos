@@ -1,6 +1,7 @@
-<h1> Minhas propostas recebidas </h1>
+<h2> Minhas propostas</h2>
 
 <div id="proposal-approved" >
+  <h3> Aprovadas </h3>
   <% @proposals_approved.each do |proposal| %>
   <div id="proposal-<%= proposal.id %>" >
     <%= render proposal%>
@@ -9,6 +10,7 @@
 </div>
 
 <div id="proposal-pending" >
+  <h3> Pendentes </h3>
   <% @proposals_pending.each do |proposal| %>
   <div id="proposal-<%= proposal.id %>" >
     <%= render proposal%>
@@ -18,6 +20,7 @@
 
 
 <div id="proposal-rejected" >
+  <h3> Rejeitadas </h3>
   <% @proposals_rejected.each do |proposal| %>
   <div id="proposal-<%= proposal.id %>" >
     <%= render proposal%>
