@@ -38,6 +38,4 @@ before_action :authenticate_user!, only: [:create, :new]
                                   :day_period, :location, :avaliability)
     end
 
-
-
 end
