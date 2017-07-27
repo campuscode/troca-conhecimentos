@@ -4,7 +4,7 @@ RSpec.describe ProposalsMailer do
   describe 'Notify when recive a new purposal' do
     it 'successfully' do
       owner = User.create(email: 'teste1@mail.com', password: '123456')
-      create(:ad, user: owner)
+      ad = create(:ad, user: owner)
       create(:profile, user: owner)
       mail = ProposalsMailer.notify_new_proposal(ad)
 

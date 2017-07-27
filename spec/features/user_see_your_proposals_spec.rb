@@ -22,14 +22,12 @@ feature 'user list his proposals' do
 
     expect(page).to have_css('h1', text: 'Suas propostas:')
     expect(page).to have_css('dl', text: proposal.requested_knowledge)
-    expect(page).to have_css('dl', text: 'Email')
     expect(page).to have_css('dl', text: proposal.day_period)
     expect(page).to have_css('dl', text: proposal.meeting_type)
     expect(page).to have_css('dl', text: proposal.status)
 
     expect(page).to have_css('h1', text: 'Suas propostas:')
     expect(page).to have_css('dl', text: other_proposal.requested_knowledge)
-    expect(page).to have_css('dl', text: 'Email')
     expect(page).to have_css('dl', text: other_proposal.day_period)
     expect(page).to have_css('dl', text: other_proposal.meeting_type)
     expect(page).to have_css('dl', text: other_proposal.status)
@@ -79,7 +77,6 @@ feature 'user list his proposals' do
 
     expect(page).not_to have_css('dl',
                                  text: another_proposal.requested_knowledge)
-    expect(page).not_to have_css('dl', text: another_proposal.email)
     expect(page).not_to have_css('dl', text: another_proposal.day_period)
     expect(page).not_to have_css('dl', text: another_proposal.meeting_type)
     expect(page).not_to have_css('dl', text: another_proposal.status)

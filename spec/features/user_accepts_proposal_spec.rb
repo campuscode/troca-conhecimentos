@@ -29,7 +29,7 @@ feature 'User accept proposal' do
 
     ad2 = create(:ad, active: true, user: user,
                       requested_knowledge: 'Quero aprender Piano!')
-    create(:proposal, ad: ad2, status: :pending,
+    proposal2 = create(:proposal, ad: ad2, status: :pending,
                       requested_knowledge: 'Quero aprender Piano!')
 
     visit root_path
