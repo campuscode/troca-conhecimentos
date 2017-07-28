@@ -3,8 +3,12 @@ require 'rails_helper'
 feature 'User receive a mail' do
   scenario 'after proposal accepted' do
     user = create(:user)
+    create(:profile, user: user)
+
     profile = create(:profile, name: 'Rogerio bispo', user: user)
     owner = create(:user, email: 'owner@teste.com')
+    create(:profile, user: owner)
+
     ad = create(:ad, title: 'Urgente, aprender alemão!', user: owner)
 
     proposal = create(:proposal, ad: ad, user: user)

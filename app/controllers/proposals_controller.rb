@@ -9,6 +9,7 @@ class ProposalsController < ApplicationController
   def create
     @proposal = @ad.proposals.new(proposal_params)
     @proposal.user = current_user
+    @proposal.status = :pending
     if @proposal.save
       ProposalMailer.notify_new_proposal(@ad).deliver_now
       redirect_to @ad

@@ -13,7 +13,8 @@ feature 'user can see all proposals' do
 
     ad2 = create(:ad, requested_knowledge: 'Quero aprender Piano!',
                       status: :active, user: user)
-    create(:proposal, ad: ad2, status: :pending,
+
+    create(:proposal, ad: ad2,
                       requested_knowledge: 'Quero aprender Piano!')
 
     ad3 = create(:ad, requested_knowledge: 'aprender guitarra!',

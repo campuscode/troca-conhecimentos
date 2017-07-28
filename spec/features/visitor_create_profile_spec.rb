@@ -13,7 +13,7 @@ feature 'Visitor create account' do
 
     expect(current_path).to eq root_path
     message = "Você ainda nao completou o seu perfil"
-    expect(page).to have_css('h2', text: message)
+    expect(page).to have_css('h4', text: message)
     expect(page).to have_link('Clique aqui')
   end
 
@@ -38,6 +38,7 @@ feature 'Visitor create account' do
     user = create(:user, password: '123456')
     login_as(user, scope: :user)
 
+
     visit root_path
     click_on 'Clique aqui'
 
@@ -55,6 +56,7 @@ feature 'Visitor create account' do
   scenario 'user complete profile missing some attributes' do
     user = create(:user, password: '123456')
     login_as(user, scope: :user)
+
 
     visit root_path
     click_on 'Clique aqui'

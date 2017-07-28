@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'user rejects proposal' do
   scenario 'sucessfully' do
     user = create(:user)
+    create(:profile, user: user)
+
     login_as(user)
     ad = create(:ad, requested_knowledge: 'aprender ruby',
                      status: :active, user: user)
@@ -22,6 +24,7 @@ feature 'user rejects proposal' do
 
   scenario 'and there are another proposals' do
     user = create(:user)
+    create(:profile, user: user)
 
     login_as(user)
 
