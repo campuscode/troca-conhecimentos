@@ -1,24 +1,19 @@
-# README
+Hi,
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this project, you will need:
 
-Things you may want to cover:
+- Rails 5.1.1
 
-* Ruby version
+- Ruby 2.3.4
 
-* System dependencies
+- Paperclip: https://github.com/thoughtbot/paperclip
 
-* Configuration
+- RSpec: https://github.com/rspec/rspec-rails
 
-* Database creation
+- Capybara: https://github.com/teamcapybara/capybara
 
-* Database initialization
+- Bootstrap: https://github.com/twbs/bootstrap-sass
 
-* How to run the test suite
+- Devise https://github.com/plataformatec/devise
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Travis.ci: https://travis-ci.org/
