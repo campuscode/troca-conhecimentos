@@ -22,8 +22,6 @@ class ProposalsController < ApplicationController
     @proposals_approved = current_user.my_proposals.approved
     @proposals_rejected = current_user.my_proposals.rejected
     @proposals_pending = current_user.my_proposals.pending
-
-
   end
 
   def approve

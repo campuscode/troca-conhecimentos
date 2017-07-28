@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'user can see all proposals' do
   scenario 'sucessfully' do
     user = create(:user)
-
+    create(:profile, user: user)
     login_as(user)
 
     ad = create(:ad, requested_knowledge: 'aprender Ruby on Rails!',

@@ -4,13 +4,12 @@
 
 <div class='row'>
   <% if current_user and !current_user.profile %>
-    <h2>Você ainda nao completou o seu perfil, <%= link_to 'Clique aqui', new_profile_path %> para continuar</h2>
+    <h4>Você ainda nao completou o seu perfil, <%= link_to 'Clique aqui', new_profile_path %> para continuar</h4>
   <% end %>
 </div>
 
 <div class='row'>
     <%if user_signed_in? %>
-      <h2><%= link_to 'Propostas recebidas', my_proposals_path %></h2>
       <% if current_user.ads.where(status: :active).empty? %>
         <h2><%= link_to 'Criar Anuncio', new_ad_path %></h2>
       <% end %>
