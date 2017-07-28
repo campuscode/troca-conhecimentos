@@ -5,7 +5,7 @@ feature 'Visitor See Ads' do
     # dados
     user = create(:user)
     create(:profile, name: 'Joao', user: user)
-    create(:ad, user: user, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    create(:ad, user: user, title: 'Quero aprender Ruby on Rails!')
 
     # navegacao
     visit root_path
@@ -19,10 +19,9 @@ feature 'Visitor See Ads' do
 
     # navegacao
     visit root_path
-    message = "Não temos anúncios por agora em \
-breve novos anúncios para você. Volte logo!"
+    message = "Não temos anúncios por agora em breve novos anúncios para você. Volte logo!"
     # expectativa
-    expect(page).to have_css('h3', text: message)
+    expect(page).to have_css('h4', text: message)
   end
 
   scenario 'and see more then one ad' do
@@ -31,11 +30,11 @@ breve novos anúncios para você. Volte logo!"
     another_user = create(:user)
     create(:profile, name: 'Joao', user: user)
     create(:profile, name: 'Joao', user: another_user)
-    create(:ad, user: user, requested_knowledge: 'Quero aprender Ruby on Rails!')
-    create(:ad, requested_knowledge: 'Gostaria de aprender Java for Web',
+    create(:ad, user: user, title: 'Quero aprender Ruby on Rails!')
+    create(:ad, title: 'Gostaria de aprender Java for Web',
                 user: another_user)
     message = 'Gostaria de aprender a fazer móveis bacanas!'
-    create(:ad, requested_knowledge: message,
+    create(:ad, title: message,
                 user: user)
 
     # navegacao
@@ -54,8 +53,8 @@ breve novos anúncios para você. Volte logo!"
     another_user = create(:user)
     create(:profile, name: 'Joao', user: user)
     create(:profile, name: 'Joao', user: another_user)
-    create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!', user: user, status: :finish)
-    create(:ad, requested_knowledge: 'Gostaria de aprender Java for Web', user: another_user)
+    create(:ad, title: 'Quero aprender Ruby on Rails!', user: user, status: :finish)
+    create(:ad, title: 'Gostaria de aprender Java for Web', user: another_user)
 
     # navegacao
     visit root_path

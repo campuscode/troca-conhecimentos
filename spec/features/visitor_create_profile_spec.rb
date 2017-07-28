@@ -13,7 +13,7 @@ feature 'Visitor create account' do
 
     expect(current_path).to eq root_path
     message = "Você ainda nao completou o seu perfil"
-    expect(page).to have_css('h3', text: message)
+    expect(page).to have_css('h4', text: message)
     expect(page).to have_link('Clique aqui')
   end
 

@@ -1,10 +1,15 @@
-<h2> Dados da proposta: </h2>
-<dt>
-   <dl>Minhas qualificaçoes sobre o tema: <%= proposal.description %></dl>
-   <dl>Conhecimento que desejo ensinar: <%=link_to proposal.requested_knowledge, proposal %></dl>
-   <dl>Email: <%= proposal.email %></dl>
-   <dl>Periodo do dia: <%= proposal.day_period %></dl>
-   <dl>Formato: <%= proposal.meeting_type %></dl>
-</dt>
-<%= link_to 'Aceitar', approve_proposal_path(proposal), method: :post %>
-<%= link_to 'Recusar', reject_proposal_path(proposal), method: :post %>
+<h2>Proposta #<%= proposal.id %></h2>
+<p>
+  <%= proposal.description %>
+</p>
+<h4>Mais detalhes:</h4>
+<dl>
+  <dt>Anuncio:</dt><dd><%=link_to proposal.ad.requested_knowledge, proposal.ad %></dd>
+  <dt>Conhecimento que desejo aprender:</dt><dd> <%= proposal.requested_knowledge %></dd>
+  <dt>Email:</dt><dd> <%= proposal.email %></dd>
+  <dt>Periodo do dia:</dt><dd> <%= proposal.day_period %></dd>
+  <dt>Formato:</dt><dd> <%= proposal.meeting_type %></dd>
+</dl>
+<h4>Ações</h4>
+<%= link_to 'Aceitar', approve_proposal_path(proposal), method: :post, class: 'btn btn-default'  %>
+<%= link_to 'Recusar', reject_proposal_path(proposal), method: :post, class: 'btn btn-default'  %>

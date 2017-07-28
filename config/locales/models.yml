@@ -8,6 +8,18 @@ pt-BR:
         state: Estado
         skills: Habilidades
         photo: Minha Foto
+      profile_review:
+        rating: Nota
+        comment: Comentário
+      ad:
+        title: 'Título'
+        requested_knowledge: 'Conhecimento a adquirir'
+        offered_knowledge:  'Conhecimento a oferecer'
+        meeting_type: 'Tipo de encontro'
+        day_period: 'Período do dia'
+        location: 'Local do encontro'
+        avaliability: 'Quando estou disponível'
     models:
       profile: Perfil
-  
+      profile_review: Review
+      ad: Anúncio
