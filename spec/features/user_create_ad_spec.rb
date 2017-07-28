@@ -62,4 +62,14 @@ feature 'User create Ad' do
 
     expect(page).not_to have_content('Criar Anuncio')
   end
+
+  scenario 'and should have profile' do
+    user = create(:user)
+
+    login_as(user, scope: :user)
+
+    visit new_ad_path
+
+    expect(current_path).to eq new_profile_path
+  end
 end
