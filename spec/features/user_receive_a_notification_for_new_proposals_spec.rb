@@ -6,6 +6,8 @@ feature 'User receives a notification for new proposals' do
 
     ad_owner = create(:user, email: 'owner@mail.com')
     user = create(:user, email: 'user@mail.com')
+    profile = create(:profile, name: 'Joao', user: user)
+    profile = create(:profile, name: 'Joao', user: ad_owner)
     ad = create(:ad, user: ad_owner, requested_knowledge: 'Aprender a assobiar')
 
     login_as(user)
