@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'filter/ads', to: 'ads#filter'
   get 'my_proposals', to: 'proposals#my_proposals'
 
-  resources :ads, only: [:new, :create, :show] do
+  resources :ads, only: [:new, :create, :show, :edit, :update] do
     post 'cancel', to: 'ads#cancel'
     post 'finish', to: 'ads#finish'
     resources :proposals, only:[:new, :create]

@@ -27,6 +27,7 @@
 
 
 <% if @ad.user == current_user and @ad.active? %>
+  <%= link_to 'Editar anúncio', edit_ad_path(@ad), class: 'btn btn-primary navbar-btn' %>
   <%= link_to 'Encerrar anúncio', ad_finish_path(@ad), method: :post, class: 'btn btn-danger navbar-btn' %>
   <%= link_to 'Cancelar anúncio', ad_cancel_path(@ad), method: :post, class: 'btn btn-danger navbar-btn' %>
 <% end %>
