@@ -12,6 +12,7 @@ pt-BR:
         rating: Nota
         comment: Comentário
       ad:
+        title: 'Título'
         requested_knowledge: 'Conhecimento a adquirir'
         offered_knowledge:  'Conhecimento a oferecer'
         meeting_type: 'Tipo de encontro'

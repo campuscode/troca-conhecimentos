@@ -1,10 +1,12 @@
 <div class="box-ad">
-  <h3><%= link_to ad.requested_knowledge, ad_path(ad) %></h3>
+  <h3>><%= link_to ad.title, ad_path(ad) %></h3>
   <dl class="dl-horizontal">
-      <dt>Conhecimento:</dt><dd> <%= link_to ad.offered_knowledge, ad %></dd>
+      <dt>O que quero aprender:</dt><dd><%= ad.requested_knowledge  %></dd>
+      <dt>O que posso ensinar:</dt><dd> <%= ad.offered_knowledge %></dd>
       <dt>Formato:</dt><dd><%= ad.meeting_type%><br></dd>
       <dt>Periodo:</dt><dd><%= ad.day_period%><br></dd>
       <dt>Localizacao:</dt><dd><%= ad.location%><br></dd>
       <dt>Quando:</dt><dd><%= ad.avaliability%><br></dd>
   </dl>
+  <%= link_to "Criado por #{ad.user.name}", ad.user.profile %>
 </div>

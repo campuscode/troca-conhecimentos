@@ -1,0 +1,15 @@
+<h2>Proposta #<%= proposal.id %></h2>
+<p>
+  <%= proposal.description %>
+</p>
+<h4>Mais detalhes:</h4>
+<dl>
+  <dt>Anuncio:</dt><dd><%=link_to proposal.ad.requested_knowledge, proposal.ad %></dd>
+  <dt>Conhecimento que desejo aprender:</dt><dd> <%= proposal.requested_knowledge %></dd>
+  <dt>Email:</dt><dd> <%= proposal.email %></dd>
+  <dt>Periodo do dia:</dt><dd> <%= proposal.day_period %></dd>
+  <dt>Formato:</dt><dd> <%= proposal.meeting_type %></dd>
+</dl>
+<h4>Ações</h4>
+<%= link_to 'Aceitar', approve_proposal_path(proposal), method: :post, class: 'btn btn-default'  %>
+<%= link_to 'Recusar', reject_proposal_path(proposal), method: :post, class: 'btn btn-default'  %>

@@ -1,24 +1,30 @@
-<h1> Minhas propostas recebidas </h1>
+<h2> Minhas propostas</h2>
 
-
-<% @proposals.each do |proposal| %>
-<div id="proposal-<%= proposal.id %>" >
-<h2> Dados da proposta: </h2>
-
-  <dl>
-    <dt> Anuncio:</dt><dd><%=link_to proposal.ad.requested_knowledge, proposal.ad %></dd>
-
-     <dt>Conhecimento que desejo aprender:</dt><dd> <%= proposal.requested_knowledge %></dd>
-     <dt>Email:</dt><dd> <%= proposal.email %></dd>
-     <dt>Periodo do dia:</dt><dd> <%= proposal.day_period %></dd>
-     <dt>Formato:</dt><dd> <%= proposal.meeting_type %></dd>
-  </dl>
-  <h3>Minhas qualificaçoes sobre o tema:</h3>
-  <p>
-    <%= proposal.description %>
-  </p>
-  <%= link_to 'Aceitar', approve_proposal_path(proposal), method: :post %>
+<div id="proposal-approved" >
+  <h3> Aprovadas </h3>
+  <% @proposals_approved.each do |proposal| %>
+  <div id="proposal-<%= proposal.id %>" >
+    <%= render proposal%>
+  </div>
+  <%end%>
 </div>
-<%end%>
 
-<%= link_to 'Voltar', root_path %>
+<div id="proposal-pending" >
+  <h3> Pendentes </h3>
+  <% @proposals_pending.each do |proposal| %>
+  <div id="proposal-<%= proposal.id %>" >
+    <%= render proposal%>
+  </div>
+  <%end%>
+</div>
+
+<div id="proposal-rejected" >
+  <h3> Rejeitadas </h3>
+  <% @proposals_rejected.each do |proposal| %>
+  <div id="proposal-<%= proposal.id %>" >
+    <%= render proposal%>
+  </div>
+  <%end%>
+</div>
+
+<%= link_to 'Voltar', root_path, class: 'btn btn-default' %>

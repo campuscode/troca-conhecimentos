@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'Visitor See Ads' do
   scenario 'successfully' do
     # dados
-    create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:ad, user: user, title: 'Quero aprender Ruby on Rails!')
 
     # navegacao
     visit root_path
@@ -24,13 +26,15 @@ feature 'Visitor See Ads' do
 
   scenario 'and see more then one ad' do
     # dados
-    another_user = create(:user, email: 'novo@usuario.com')
-    user = create(:user, email: 'aham@usuario.com')
-    create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
-    create(:ad, requested_knowledge: 'Gostaria de aprender Java for Web',
+    user = create(:user)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
+    create(:ad, user: user, title: 'Quero aprender Ruby on Rails!')
+    create(:ad, title: 'Gostaria de aprender Java for Web',
                 user: another_user)
     message = 'Gostaria de aprender a fazer móveis bacanas!'
-    create(:ad, requested_knowledge: message,
+    create(:ad, title: message,
                 user: user)
 
     # navegacao
@@ -45,9 +49,12 @@ feature 'Visitor See Ads' do
 
   scenario 'and dont see finished ads' do
     # dados
-    user = create(:user, email: 'aham@usuario.com')
-    create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!', user: user, status: :finish)
-    create(:ad, requested_knowledge: 'Gostaria de aprender Java for Web', user: user)
+    user = create(:user)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
+    create(:ad, title: 'Quero aprender Ruby on Rails!', user: user, status: :finish)
+    create(:ad, title: 'Gostaria de aprender Java for Web', user: another_user)
 
     # navegacao
     visit root_path

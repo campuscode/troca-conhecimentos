@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170727222427) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "status", default: 0
+    t.string "title"
     t.index ["user_id"], name: "index_ads_on_user_id"
   end
 
