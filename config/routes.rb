@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'my_proposals', to: 'proposals#my_proposals'
 
   resources :ads, only: [:new, :create, :show] do
+    post 'cancel', to: 'ads#cancel'
     post 'finish', to: 'ads#finish'
     resources :proposals, only:[:new, :create]
   end
