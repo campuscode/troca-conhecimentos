@@ -5,17 +5,23 @@
   <% if current_user.proposals.any? %>
     <h1> Suas propostas: </h1>
   <% @profile_proposals.each do |proposal|%>
-    <dt>
-      <dl>Minhas qualificaçoes sobre o tema: <%= proposal.description %></dl>
-      <dl>Conhecimento que desejo aprender: <%= proposal.requested_knowledge %></dl>
-      <dl>Email: <%= proposal.email %></dl>
-      <dl>Periodo do dia: <%= proposal.day_period %></dl>
-      <dl>Formato: <%= proposal.meeting_type %></dl>
-      <dl>Status: <%= proposal.status %>
-    </dt>
-    <%= link_to 'Avaliar troca de conhecimento', new_profile_review_path(proposal.ad.user.profile)%>
+    <dl class="dl-horizontal">
+      <dt>Minhas qualificaçoes sobre o tema:</dt><dd> <%= proposal.description %></dd>
+      <dt>Conhecimento que desejo aprender:</dt><dd> <%= proposal.requested_knowledge %></dd>
+      <dt>Email:</dt><dd> <%= proposal.email %></dd>
+      <dt>Periodo do dia:</dt><dd> <%= proposal.day_period %></dd>
+      <dt>Formato:</dt><dd> <%= proposal.meeting_type %></dd>
+      <dt>Status:</dt><dd> <%= proposal.status %></dd>
+    </dl>
+    <% if proposal.approved? %>
+      <% if proposal.ad.user.profile.has_review_from_user? current_user %>
+        <p>Profile já avaliado</p>
+      <% else %>
+        <%= link_to 'Avaliar troca de conhecimento', new_profile_review_path(proposal.ad.user.profile), class: 'btn btn-default'%>
+      <% end %>
+    <% end %>
   <% end %>
  <% end %>
 <% end %>
 
-<%= link_to 'Voltar', root_path %>
+<%= link_to 'Voltar', root_path, class: 'btn btn-default'%>
