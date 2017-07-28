@@ -18,7 +18,7 @@ feature 'visitant filter ads' do
     fill_in 'Busca', with: 'Culinária'
     click_on 'Buscar'
 
-    #expectations
+    # expectations
     expect(page).not_to have_content('Quero aprender Ruby on Rails!')
     expect(page).to have_content('Quero aprender Culinária!')
     expect(page).to have_content('Aprender violão')
@@ -33,13 +33,13 @@ feature 'visitant filter ads' do
     create(:profile, name: 'Joao', user: another_user)
     ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender Ruby on Rails!')
 
-    #navegaçao
+    # navegacao
     visit root_path
 
     fill_in 'Busca', with: 'Culinária'
     click_on 'Buscar'
 
-    #expectations
+    # expectations
     expect(page).not_to have_content('Quero aprender Culinária!')
     expect(page).to have_content('Resultado da busca: "Culinária"')
     expect(page).to have_content('Não encontramos resultados para a busca!')
