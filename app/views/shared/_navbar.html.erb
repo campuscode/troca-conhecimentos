@@ -19,8 +19,9 @@
       <%end%>
       <%= link_to current_profile.name, profile_path(current_profile), class: 'navbar-link' %>
       <%= link_to 'Minhas propostas', my_send_proposals_path, class: 'btn btn-success navbar-btn' %>
+      <%= link_to 'Propostas recebidas', my_proposals_path, class: 'btn btn-success navbar-btn' %>
     <% end %>
-    <%= link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-success navbar-btn' %>
+    <%= link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-danger navbar-btn' %>
   <% else %>
     <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success navbar-btn' %>
     <%= link_to "Log in", new_user_session_path, class: 'btn btn-success navbar-btn'%>

@@ -9,6 +9,7 @@ class ProposalsController < ApplicationController
   def create
     @proposal = @ad.proposals.new(proposal_params)
     @proposal.user = current_user
+    @proposal.status = :pending
     if @proposal.save
       ProposalMailer.notify_new_proposal(@ad).deliver_now
       redirect_to @ad
@@ -22,8 +23,6 @@ class ProposalsController < ApplicationController
     @proposals_approved = current_user.my_proposals.approved
     @proposals_rejected = current_user.my_proposals.rejected
     @proposals_pending = current_user.my_proposals.pending
-
-
   end
 
   def approve

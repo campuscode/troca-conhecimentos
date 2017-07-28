@@ -6,5 +6,6 @@ FactoryGirl.define do
     day_period 'Qualquer periodo'
     meeting_type 'Qualquer formato'
     user
+    status :pending
   end
 end
