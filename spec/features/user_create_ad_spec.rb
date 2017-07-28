@@ -9,7 +9,7 @@ feature 'User create Ad' do
 
     visit root_path
     click_on 'Criar Anuncio'
-
+    fill_in 'Titulo', with: ad.title
     fill_in 'A oferecer', with: ad.requested_knowledge
     fill_in 'A Aprender', with: ad.offered_knowledge
     fill_in 'Meeting', with: ad.meeting_type
@@ -19,8 +19,9 @@ feature 'User create Ad' do
 
     click_on 'Enviar'
 
-    # expect strang things
-    expect(page).to have_css('h1', text: ad.requested_knowledge)
+    #expect strang things
+    expect(page).to have_css('h1', text: ad.title)
+    expect(page).to have_css('dd', text: ad.requested_knowledge)
     expect(page).to have_css('dd', text: ad.offered_knowledge)
     expect(page).to have_css('dd', text: ad.meeting_type)
     expect(page).to have_css('dd', text: ad.day_period)
