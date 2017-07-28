@@ -11,11 +11,15 @@ class AdsController < ApplicationController
   end
 
   def new
-    if current_user.ads.where(status: :active).any?
-       flash[:notice] = 'Voce ja tem um anuncio ativo'
-       redirect_to root_path
+    if current_user.profile
+      if current_user.ads.where(status: :active).any?
+         flash[:notice] = 'Voce ja tem um anuncio ativo'
+         redirect_to root_path
+      else
+        @ad = Ad.new
+      end
     else
-      @ad = Ad.new
+      redirect_to new_profile_path
     end
   end
 

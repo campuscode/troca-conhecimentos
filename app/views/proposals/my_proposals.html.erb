@@ -18,7 +18,6 @@
   <%end%>
 </div>
 
-
 <div id="proposal-rejected" >
   <h3> Rejeitadas </h3>
   <% @proposals_rejected.each do |proposal| %>
@@ -28,4 +27,4 @@
   <%end%>
 </div>
 
-<%= link_to 'Voltar', root_path %>
+<%= link_to 'Voltar', root_path, class: 'btn btn-default' %>

@@ -1,6 +1,4 @@
-<div class='row'>
-  <h1>Bem vindo ao melhor de compartilhamento de conhecimento.</h1>
-</div>
+<h2 class='text-center welcome'>Bem vindo ao melhor compartilhamento de conhecimento.</h2>
 
 <div class='row'>
   <% if current_user and !current_user.profile %>
@@ -11,7 +9,7 @@
 <div class='row'>
     <%if user_signed_in? %>
       <% if current_user.ads.where(status: :active).empty? %>
-        <%= link_to 'Criar Anuncio', new_ad_path %>
+        <%= link_to 'Criar Anuncio', new_ad_path, class:'btn btn-success' %>
       <% end %>
     <% end %>
 </div>
@@ -19,7 +17,7 @@
 <div class='row'>
 <% if @ads.empty? %>
   <div class="alert alert-info">
-    <h3>Não temos anúncios por agora em breve novos anúncios para você. Volte logo!</h3>
+    <h4>Não temos anúncios por agora em breve novos anúncios para você. Volte logo!</h4>
   </div>
 <% end %>
 </div>
@@ -27,7 +25,7 @@
 <div class='row'>
   <% @ads.each do |ad|%>
   <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
-    <h3><%= render ad %></h3>
+    <%= render ad %>
   </div>
   <% end %>
 </div>

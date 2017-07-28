@@ -2,12 +2,14 @@ require 'rails_helper'
 feature 'user list his proposals' do
   scenario 'successfully' do
     user = create(:user)
-    another_user = create(:user)
     create(:profile, name: 'Joao', user: user)
-    create(:profile, name: 'Joao', user: another_user)
-    login_as(user)
-    ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender Ruby on Rails!')
 
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: another_user)
+
+    login_as(user)
+
+    ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender Ruby on Rails!')
     proposal = create(:proposal, user: user, ad: ad, meeting_type: 'Online',
                                  description: 'Sei tocar violao',
                                  requested_knowledge: 'Aprender a cozinhar',
@@ -23,6 +25,7 @@ feature 'user list his proposals' do
 
     click_on 'Minhas propostas'
 
+    #expectativa
     expect(page).to have_css('h1', text: 'Suas propostas:')
     expect(page).to have_css('dl', text: proposal.requested_knowledge)
     expect(page).to have_css('dl', text: proposal.day_period)
@@ -50,17 +53,17 @@ feature 'user list his proposals' do
 
   scenario 'user oly see your proposals' do
     user = create(:user)
-    another_user = create(:user)
     create(:profile, name: 'Joao', user: user)
+
+    another_user = create(:user)
     create(:profile, name: 'Joao', user: another_user)
+
     ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender Ruby on Rails!')
     proposal = create(:proposal, user: user, ad: ad, meeting_type: 'Online',
                                  description: 'Sei tocar violao',
                                  requested_knowledge: 'Aprender a cozinhar',
                                  day_period: 'Manha', status: :approved)
 
-    another_user = create(:user)
-    create(:profile, user: another_user)
     another_ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender java!')
     another_proposal = create(:proposal, user: another_user, status: :pending,
                                          day_period: 'Tarde', ad: another_ad,

@@ -3,19 +3,21 @@ require 'rails_helper'
 feature 'User create Ad' do
   scenario 'successfully' do
     user = create(:user)
+    create(:profile, user: user)
     login_as(user, scope: :user)
 
     ad = build(:ad, user: user, requested_knowledge: 'Quero aprender Rails!')
 
     visit root_path
     click_on 'Criar Anuncio'
+
     fill_in 'Titulo', with: ad.title
-    fill_in 'A oferecer', with: ad.requested_knowledge
-    fill_in 'A Aprender', with: ad.offered_knowledge
-    fill_in 'Meeting', with: ad.meeting_type
-    fill_in 'Periodo', with: ad.day_period
-    fill_in 'Localizacao', with: ad.location
-    fill_in 'Quando', with: ad.avaliability
+    fill_in 'Conhecimento a adquirir', with: ad.requested_knowledge
+    fill_in 'Conhecimento a oferecer', with: ad.offered_knowledge
+    fill_in 'Tipo de encontro', with: ad.meeting_type
+    fill_in 'Período do dia', with: ad.day_period
+    fill_in 'Local do encontro', with: ad.location
+    fill_in 'Quando estou disponível', with: ad.avaliability
 
     click_on 'Enviar'
 
@@ -33,28 +35,31 @@ feature 'User create Ad' do
     build(:ad)
 
     visit new_ad_path
+
     expect(page).to have_content(I18n.t('devise.failure.unauthenticated'))
   end
-  scenario 'and can only have one ad' do
 
+  scenario 'and can only have one ad' do
     user = create(:user)
-    profile = create(:profile, name: 'Joao', user: user)
-    login_as(user, scope: :user)
+    create(:profile, user: user)
     create(:ad, user: user)
 
+    login_as(user, scope: :user)
 
     visit new_ad_path
+
     expect(page).to have_content('Voce ja tem um anuncio ativo')
   end
 
   scenario 'and trie to create a second ad' do
-
     user = create(:user)
-    profile = create(:profile, name: 'Joao', user: user)
-    login_as(user, scope: :user)
+    create(:profile, user: user)
     create(:ad, user: user)
 
+    login_as(user, scope: :user)
+
     visit root_path
+
     expect(page).not_to have_content('Criar Anuncio')
   end
 end
