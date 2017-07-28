@@ -11,7 +11,7 @@ feature 'user send proposal' do
 
     # simula a acao
     visit root_path
-    click_on 'Quero aprender Ruby on Rails!'
+    click_on ad.title
 
     click_on 'Enviar proposta'
 
@@ -37,12 +37,12 @@ feature 'user send proposal' do
     login_as(user)
     # ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
     msg = 'Quero aprender Ruby on Rails!'
-    FactoryGirl.create(:ad, requested_knowledge: msg)
+    ad = create(:ad, title: msg)
 
     # simula a acao
     visit root_path
 
-    click_on 'Quero aprender Ruby on Rails!'
+    click_on ad.title
     click_on 'Enviar proposta'
 
     fill_in 'Minhas qualificaçoes sobre o tema', with: ''
@@ -76,7 +76,7 @@ feature 'user send proposal' do
     # simula a acao
     visit root_path
 
-    click_on 'Quero aprender Ruby on Rails!'
+    click_on ad.title
 
     # expectativa apos a acao
     expect(page).not_to have_link('Enviar proposta')
@@ -96,7 +96,7 @@ feature 'user send proposal' do
 
       another_user = create(:user, email: 'anotheruser@gmail.com')
       create(:profile, name: 'Pedro Alvares', user: another_user)
-      create(:ad, user: another_user, requested_knowledge: 'Quero aprender Java!')
+      create(:ad, user: another_user, title: 'Quero aprender Java!')
 
       login_as(another_user, scope: :user)
 

@@ -38,21 +38,18 @@ class AdsController < ApplicationController
     redirect_to @ad
   end
 
-  def my_ads
-    @ads = current_user.ads.active
-  end
 
   def cancel
     @ad = Ad.find(params[:ad_id])
     @ad.cancelled!
     flash[:notice] = 'Anuncio cancelado com sucesso.'
-    redirect_to my_ads_url
+    redirect_to @ad
   end
 
   private
 
   def ad_params
-    params.require(:ad).permit(:requested_knowledge, :offered_knowledge,
+    params.require(:ad).permit(:title, :requested_knowledge, :offered_knowledge,
                                :meeting_type, :day_period, :location,
                                :avaliability)
   end
