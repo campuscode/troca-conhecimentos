@@ -3,4 +3,5 @@ class Ad < ApplicationRecord
     belongs_to :user
 
     enum status: [ :active, :finish, :cancelled ]
+
 end

@@ -4,12 +4,14 @@ feature 'user send proposal' do
   scenario 'sucessfully' do
     # criacao dos dados necessarios
     user = create(:user)
-    login_as(user)
+    ad_owner = create(:user, email: 'owner@mail.com')
+    create(:profile, user: ad_owner)
     message = 'Quero aprender Ruby on Rails!'
-    ad = create(:ad, requested_knowledge: message)
+    ad = create(:ad, requested_knowledge: message, user: ad_owner)
     proposal = build(:proposal)
 
     # simula a acao
+    login_as(user)
     visit root_path
     click_on ad.title
 
