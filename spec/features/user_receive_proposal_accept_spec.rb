@@ -4,7 +4,9 @@ feature 'User receive a mail' do
   scenario 'after proposal accepted' do
     user = create(:user)
     profile = create(:profile, name: 'Rogerio bispo', user: user)
+
     owner = create(:user, email: 'owner@teste.com')
+    profile = create(:profile, user: owner)
     ad = create(:ad, title: 'Urgente, aprender alemão!', user: owner)
 
     proposal = create(:proposal, ad: ad, user: user)

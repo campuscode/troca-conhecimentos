@@ -8,3 +8,4 @@
     <dt>Localizacao:</dt><dd><%= ad.location%><br></dd>
     <dt>Quando:</dt><dd><%= ad.avaliability%><br></dd>
 </dl>
+<%= link_to "Criado por #{ad.user.name}", ad.user.profile %>

@@ -38,6 +38,7 @@ feature 'User create Ad' do
   scenario 'and can only have one ad' do
 
     user = create(:user)
+    profile = create(:profile, name: 'Joao', user: user)
     login_as(user, scope: :user)
     create(:ad, user: user)
 
@@ -49,6 +50,7 @@ feature 'User create Ad' do
   scenario 'and trie to create a second ad' do
 
     user = create(:user)
+    profile = create(:profile, name: 'Joao', user: user)
     login_as(user, scope: :user)
     create(:ad, user: user)
 

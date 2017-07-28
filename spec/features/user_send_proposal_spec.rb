@@ -4,10 +4,11 @@ feature 'user send proposal' do
   scenario 'sucessfully' do
     # criacao dos dados necessarios
     user = create(:user)
-    ad_owner = create(:user, email: 'owner@mail.com')
-    create(:profile, user: ad_owner)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
     message = 'Quero aprender Ruby on Rails!'
-    ad = create(:ad, requested_knowledge: message, user: ad_owner)
+    ad = create(:ad, user: another_user, title: message)
     proposal = build(:proposal)
 
     # simula a acao
@@ -36,10 +37,13 @@ feature 'user send proposal' do
   scenario 'and must fill all informations' do
     # cria os dados necessarios
     user = create(:user)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
     login_as(user)
     # ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
     msg = 'Quero aprender Ruby on Rails!'
-    ad = create(:ad, title: msg)
+    ad = create(:ad, title: msg, user: another_user)
 
     # simula a acao
     visit root_path
@@ -63,10 +67,13 @@ feature 'user send proposal' do
   scenario 'and proposal cannot be the same' do
     # cria os dados necessarios
     user = create(:user)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
     login_as(user)
     # ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
     msg = 'Quero aprender Ruby on Rails!'
-    ad = FactoryGirl.create(:ad, requested_knowledge: msg)
+    ad = FactoryGirl.create(:ad, user: another_user, requested_knowledge: msg)
 
     msg = 'Quero aprender Ruby on Rails!',
     proposal = FactoryGirl.create(:proposal, user: user, ad: ad,
