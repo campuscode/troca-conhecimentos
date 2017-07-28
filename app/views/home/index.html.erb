@@ -11,7 +11,7 @@
 <div class='row'>
     <%if user_signed_in? %>
       <% if current_user.ads.where(status: :active).empty? %>
-        <h2><%= link_to 'Criar Anuncio', new_ad_path %></h2>
+        <%= link_to 'Criar Anuncio', new_ad_path %>
       <% end %>
     <% end %>
 </div>

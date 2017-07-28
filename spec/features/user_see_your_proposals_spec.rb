@@ -2,15 +2,18 @@ require 'rails_helper'
 feature 'user list his proposals' do
   scenario 'successfully' do
     user = create(:user)
-    create(:profile, user: user)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
     login_as(user)
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender Ruby on Rails!')
+
     proposal = create(:proposal, user: user, ad: ad, meeting_type: 'Online',
                                  description: 'Sei tocar violao',
                                  requested_knowledge: 'Aprender a cozinhar',
                                  day_period: 'Manha', status: :approved)
 
-    create(:ad, requested_knowledge: 'Quero aprender Java')
+    create(:ad, user: another_user, requested_knowledge: 'Quero aprender Java')
     other_proposal = create(:proposal, user: user, meeting_type: 'Online',
                                        ad: ad, description: 'Sei tocar violao',
                                        requested_knowledge: 'Cozinhar',
@@ -47,8 +50,10 @@ feature 'user list his proposals' do
 
   scenario 'user oly see your proposals' do
     user = create(:user)
-    create(:profile, user: user)
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
+    ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender Ruby on Rails!')
     proposal = create(:proposal, user: user, ad: ad, meeting_type: 'Online',
                                  description: 'Sei tocar violao',
                                  requested_knowledge: 'Aprender a cozinhar',
@@ -56,7 +61,7 @@ feature 'user list his proposals' do
 
     another_user = create(:user)
     create(:profile, user: another_user)
-    another_ad = create(:ad, requested_knowledge: 'Quero aprender java!')
+    another_ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender java!')
     another_proposal = create(:proposal, user: another_user, status: :pending,
                                          day_period: 'Tarde', ad: another_ad,
                                          description: 'Sei Jogar Bola',

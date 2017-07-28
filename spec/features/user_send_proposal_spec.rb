@@ -4,16 +4,17 @@ feature 'user send proposal' do
   scenario 'sucessfully' do
     # criacao dos dados necessarios
     user = create(:user)
-    ad_owner = create(:user, email: 'owner@mail.com')
-    create(:profile, user: ad_owner)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
     message = 'Quero aprender Ruby on Rails!'
-    create(:ad, requested_knowledge: message, user: ad_owner)
+    ad = create(:ad, user: another_user, title: message)
     proposal = build(:proposal)
 
     # simula a acao
     login_as(user)
     visit root_path
-    click_on 'Quero aprender Ruby on Rails!'
+    click_on ad.title
 
     click_on 'Enviar proposta'
 
@@ -36,15 +37,18 @@ feature 'user send proposal' do
   scenario 'and must fill all informations' do
     # cria os dados necessarios
     user = create(:user)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
     login_as(user)
     # ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
     msg = 'Quero aprender Ruby on Rails!'
-    FactoryGirl.create(:ad, requested_knowledge: msg)
+    ad = create(:ad, title: msg, user: another_user)
 
     # simula a acao
     visit root_path
 
-    click_on 'Quero aprender Ruby on Rails!'
+    click_on ad.title
     click_on 'Enviar proposta'
 
     fill_in 'Minhas qualificaçoes sobre o tema', with: ''
@@ -63,10 +67,13 @@ feature 'user send proposal' do
   scenario 'and proposal cannot be the same' do
     # cria os dados necessarios
     user = create(:user)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
     login_as(user)
     # ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
     msg = 'Quero aprender Ruby on Rails!'
-    ad = FactoryGirl.create(:ad, requested_knowledge: msg)
+    ad = FactoryGirl.create(:ad, user: another_user, requested_knowledge: msg)
 
     msg = 'Quero aprender Ruby on Rails!',
     proposal = FactoryGirl.create(:proposal, user: user, ad: ad,
@@ -78,7 +85,7 @@ feature 'user send proposal' do
     # simula a acao
     visit root_path
 
-    click_on 'Quero aprender Ruby on Rails!'
+    click_on ad.title
 
     # expectativa apos a acao
     expect(page).not_to have_link('Enviar proposta')
@@ -98,7 +105,7 @@ feature 'user send proposal' do
 
       another_user = create(:user, email: 'anotheruser@gmail.com')
       create(:profile, name: 'Pedro Alvares', user: another_user)
-      create(:ad, user: another_user, requested_knowledge: 'Quero aprender Java!')
+      create(:ad, user: another_user, title: 'Quero aprender Java!')
 
       login_as(another_user, scope: :user)
 

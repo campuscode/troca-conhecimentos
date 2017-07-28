@@ -6,6 +6,7 @@ feature 'User receive a mail' do
     create(:profile, user: user)
 
     profile = create(:profile, name: 'Rogerio bispo', user: user)
+
     owner = create(:user, email: 'owner@teste.com')
     create(:profile, user: owner)
 

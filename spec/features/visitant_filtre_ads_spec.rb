@@ -2,12 +2,16 @@ require 'rails_helper'
 
 feature 'visitant filter ads' do
   scenario 'sucessfully' do
-    # dados
-    create(:user, email: 'user@email.com')
-    create(:user, email: 'meuusuario@email.com')
-    create(:ad, requested_knowledge: 'Quero aprender Culinária!')
-    another_ad1 = create(:ad, requested_knowledge: 'Aprender violão', offered_knowledge: 'Ensinar Culinária')
-    another_ad2 = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    #dados
+    user = create(:user)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
+    ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender Culinária!')
+    another_ad1 = create(:ad, user: another_user, requested_knowledge: 'Aprender violão',
+                              offered_knowledge: 'Ensinar Culinária')
+    another_ad2 = create(:ad, user: another_user,
+                              requested_knowledge: 'Quero aprender Ruby on Rails!')
     #navegaçao
     visit root_path
 
@@ -22,8 +26,12 @@ feature 'visitant filter ads' do
   end
 
   scenario 'search results not found' do
-    # dados
-    ad = create(:ad, requested_knowledge: 'Quero aprender Ruby on Rails!')
+    #dados
+    user = create(:user)
+    another_user = create(:user)
+    create(:profile, name: 'Joao', user: user)
+    create(:profile, name: 'Joao', user: another_user)
+    ad = create(:ad, user: another_user, requested_knowledge: 'Quero aprender Ruby on Rails!')
 
     # navegacao
     visit root_path

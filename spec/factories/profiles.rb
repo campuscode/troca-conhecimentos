@@ -5,5 +5,6 @@ FactoryGirl.define do
     city 'São Paulo'
     state 'SP'
     skills 'Mortal pra traz'
+    user
   end
 end

@@ -1,12 +1,10 @@
 <div class='row'>
-  <h1>
-    <%= @ad.requested_knowledge %>
-    <% if @ad.finish? %>
-     (Anúncio encerrado)
-    <% end %>
-  </h1>
+  <h1><%= @ad.title %></h1>
+
   <dl class="dl-horizontal">
-    <dt>Conhecimento:</dt><dd> <%= @ad.offered_knowledge%></dd>
+    <dt>Status</dt><dd><%= I18n.t @ad.status %></dd>
+    <dt>O que quero aprender:</dt><dd><%= @ad.requested_knowledge  %></dd>
+    <dt>O que posso ensinar:</dt><dd> <%= @ad.offered_knowledge %></dd>
     <dt>Formato:</dt><dd><%= @ad.meeting_type%><br></dd>
     <dt>Periodo:</dt><dd><%= @ad.day_period%><br></dd>
     <dt>Localizacao:</dt><dd><%= @ad.location%><br></dd>
@@ -30,4 +28,5 @@
 
 <% if @ad.user == current_user and @ad.active? %>
   <%= link_to 'Encerrar anúncio', ad_finish_path(@ad), method: :post, class: 'btn btn-danger navbar-btn' %>
+  <%= link_to 'Cancelar anúncio', ad_cancel_path(@ad), method: :post, class: 'btn btn-danger navbar-btn' %>
 <% end %>
