@@ -30,6 +30,16 @@ class AdsController < ApplicationController
     redirect_to @ad
   end
 
+  def edit
+    @ad = Ad.find(params[:id])
+  end
+
+  def update
+    @ad = Ad.find(params[:id])
+    @ad.update(ad_params)
+    redirect_to @ad
+  end
+
   def filter
     @busca = params[:filter]
     @ads = Ad.where('requested_knowledge like  ? or offered_knowledge like  ? ',

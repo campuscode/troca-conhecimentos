@@ -12,7 +12,9 @@
   </dl>
   <label>Conhecimentos:</label>
   <p><%= @profile.skills %></p>
-  <%= link_to 'Editar meu perfil', edit_profile_path, class: 'btn btn-default' %>
+  <% if @profile.user == current_user  %>
+    <%= link_to 'Editar meu perfil', edit_profile_path, class: 'btn btn-default' %>
+  <% end %>
   <%= link_to 'Ver Anúncios', profile_ads_path(@profile), class: 'btn btn-default' %>
 
   <h4>Avaliações</h4>

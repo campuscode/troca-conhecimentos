@@ -64,16 +64,9 @@ ActiveRecord::Schema.define(version: 20170727222427) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "ad_id"
-    t.integer "status", default: 0
+    t.integer "status"
     t.index ["ad_id"], name: "index_proposals_on_ad_id"
     t.index ["user_id"], name: "index_proposals_on_user_id"
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.integer "rating"
-    t.text "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

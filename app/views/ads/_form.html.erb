@@ -1,0 +1,37 @@
+<%= form_for  @ad do |f| %>
+  <div class="form-group">
+    <%= f.label :title, 'Titulo' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :requested_knowledge %>
+    <%= f.text_field :requested_knowledge, class: 'form-control' %>
+  </div>
+
+ <div class="form-group">
+   <%= f.label :offered_knowledge %>
+   <%= f.text_field :offered_knowledge, class: 'form-control' %>
+ </div>
+
+ <div class="form-group">
+   <%= f.label :meeting_type %>
+   <%= f.text_field :meeting_type, class: 'form-control' %>
+ </div>
+
+ <div class="form-group">
+   <%= f.label :day_period %>
+   <%= f.text_field :day_period, class: 'form-control' %>
+ </div>
+
+ <div class="form-group">
+   <%= f.label :location %>
+   <%= f.text_field :location, class: 'form-control' %>
+ </div>
+
+ <div class="form-group">
+   <%= f.label :avaliability %>
+   <%= f.text_field :avaliability, class: 'form-control' %>
+ </div>
+
+   <%= f.submit 'Enviar', class: "btn btn-default" %>
+<% end %>
